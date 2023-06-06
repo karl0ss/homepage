@@ -85,6 +85,7 @@ import watchtower from "./watchtower/widget";
 import whatsupdocker from "./whatsupdocker/widget";
 import wgeasy from "./wgeasy/widget";
 import xteve from "./xteve/widget";
+import jdrssdownloader from "./jdrssdownloader/widget";
 
 const widgets = {
   adguard,
@@ -116,6 +117,7 @@ const widgets = {
   immich,
   jackett,
   jellyfin: emby,
+  jdrssdownloader,
   jellyseerr,
   komga,
   kopia,
