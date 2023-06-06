@@ -65,7 +65,7 @@ export default async function JDRssProxyHandler(req, res) {
     if (status !== 200) {
         return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
     }
-    let showCount;
+    let showCount = 0;
     showCount = apiData.length;
 
     // Calculate the number of items in the retry cache
@@ -73,7 +73,7 @@ export default async function JDRssProxyHandler(req, res) {
     if (status !== 200) {
         return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
     }
-    let retryCache;
+    let retryCache = 0;
     retryCache = apiData.length;
 
     // Calculate the number of items in the feed cache
@@ -81,13 +81,13 @@ export default async function JDRssProxyHandler(req, res) {
     if (status !== 200) {
         return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
     }
-    let feedCache;
+    let feedCache = 0;
     feedCache = apiData.length;
 
     const data = {
-        showCount:showCount,
-        retryCache:retryCache,
-        feedCache:feedCache
+        showCount,
+        retryCache,
+        feedCache
 
     };
 
