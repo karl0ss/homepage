@@ -89,6 +89,7 @@ const components = {
   uptimekuma: dynamic(() => import("./uptimekuma/component")),
   watchtower: dynamic(() => import("./watchtower/component")),
   whatsupdocker: dynamic(() => import("./whatsupdocker/component")),
+  wgeasy: dynamic(() => import("./wgeasy/component")),
   xteve: dynamic(() => import("./xteve/component")),
 };
 
