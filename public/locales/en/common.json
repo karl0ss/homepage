@@ -653,5 +653,8 @@
     "nextpvr": {
         "upcoming": "Upcoming",
         "ready": "Recent"
+    },
+    "wgeasy": {
+        "clients": "Total Clients"
     }
 }
