@@ -83,6 +83,7 @@ import unmanic from "./unmanic/widget";
 import uptimekuma from "./uptimekuma/widget";
 import watchtower from "./watchtower/widget";
 import whatsupdocker from "./whatsupdocker/widget";
+import wgeasy from "./wgeasy/widget";
 import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
 
@@ -175,6 +176,7 @@ const widgets = {
   uptimekuma,
   watchtower,
   whatsupdocker,
+  wgeasy,
   xteve,
 };
 
