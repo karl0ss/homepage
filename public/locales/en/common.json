@@ -653,5 +653,10 @@
     "nextpvr": {
         "upcoming": "Upcoming",
         "ready": "Recent"
+    },
+    "jdrssdownloader": {
+        "totalShows": "Tracked Shows",
+        "retryCache": "Retry Cache",
+        "feedCache": "Feed Cache"
     }
 }
