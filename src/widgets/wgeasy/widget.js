@@ -1,7 +1,7 @@
 import nextpvrProxyHandler from "./proxy";
 
 const widget = {
-  api: "{url}api/{endpoint}",
+  api: "{url}/api/{endpoint}",
   proxyHandler: nextpvrProxyHandler,
 
   mappings: {
