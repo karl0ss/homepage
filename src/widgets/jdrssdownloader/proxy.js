@@ -59,39 +59,19 @@ export default async function JDRssProxyHandler(req, res) {
     }
 
     logger.debug("Getting data from JDRss API");
-    // Calculate the number of Tracked Shows
-    let [status, apiData] = await fetchDataFromJDRss('shows', widget);
+    // Get data from JDRss stats API
+    const [status, apiData] = await fetchDataFromJDRss('stats', widget);
 
     if (status !== 200) {
-        return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
+        return res.status(status).json({ error: { message: "HTTP error communicating with JDRss API", data: Buffer.from(apiData).toString() } });
     }
-    let showCount = 0;
-    showCount = apiData.length;
-
-    // Calculate the number of items in the retry cache
-    [status, apiData] = await fetchDataFromJDRss('retryCache', widget);
-    if (status !== 200) {
-        return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
-    }
-    let retryCache = 0;
-    retryCache = apiData.length;
-
-    // Calculate the number of items in the feed cache
-    [status, apiData] = await fetchDataFromJDRss('feedCache', widget);
-    if (status !== 200) {
-        return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
-    }
-    let feedCache = 0;
-    feedCache = apiData.length;
-
     const data = {
-        showCount,
-        retryCache,
-        feedCache
+        showCount:apiData.ShowList ,
+        retryCache:apiData.RetryCache,
+        feedCache: apiData.FeedCache
 
     };
 
     return res.status(status).send(data);
 
 }
-
