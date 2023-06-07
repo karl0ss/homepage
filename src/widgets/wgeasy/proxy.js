@@ -33,9 +33,9 @@ async function loginToWGEasy(endpoint, widget) {
         return [403, null];
     }
     // Create new session on WgEasy
-    let url = new URL(formatApiCall(api, { endpoint, ...widget }));
+    const url = new URL(formatApiCall(api, { endpoint, ...widget }));
 
-    let [status, contentType, data, responseHeaders] = await httpProxy(url, {
+    const [status, data, , responseHeaders] = await httpProxy(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ async function loginToWGEasy(endpoint, widget) {
         return [status, data, responseHeaders];
     }
     try {
-        globalSid = responseHeaders["set-cookie"][0]
+        [ globalSid ] = responseHeaders["set-cookie"]
     } catch (e) {
         logger.error("Error decoding NextPVR API data. Data: %s", data.toString());
         return [status, null];
@@ -99,14 +99,14 @@ export default async function WGeasyProxyHandler(req, res) {
 
     logger.debug("Getting data from WGeasy API");
     // Calculate the number of clients
-    let [status, apiData] = await fetchDataFromWGeasy('wireguard/client', widget, globalSid);
+    const [status, apiData] = await fetchDataFromWGeasy('wireguard/client', widget, globalSid);
 
     if (status !== 200) {
         return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
     }
-    let clientCount;
+    let clientCount = 0;
     clientCount = apiData.length;
-    
+
     const data = {
         clientCount
     };
@@ -114,5 +114,4 @@ export default async function WGeasyProxyHandler(req, res) {
     return res.status(status).send(data);
 
 }
-
 
