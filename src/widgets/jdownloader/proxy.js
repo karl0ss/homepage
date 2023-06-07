@@ -1,12 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import { JDownloaderClient } from 'jdownloader-client';
-
 import getServiceWidget from "utils/config/service-helpers";
 import createLogger from "utils/logger";
 
+const { JDownloaderClient } = require('jdownloader-client')
 
 const proxyName = "jdownloaderProxyHandler";
-
 const logger = createLogger(proxyName);
 
 async function getWidget(req) {
