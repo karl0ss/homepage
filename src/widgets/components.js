@@ -32,6 +32,7 @@ const components = {
   immich: dynamic(() => import("./immich/component")),
   jackett: dynamic(() => import("./jackett/component")),
   jdrssdownloader: dynamic(() => import("./jdrssdownloader/component")),
+  jdownloader: dynamic(() => import("./jdownloader/component")),
   jellyfin: dynamic(() => import("./emby/component")),
   jellyseerr: dynamic(() => import("./jellyseerr/component")),
   komga: dynamic(() => import("./komga/component")),
