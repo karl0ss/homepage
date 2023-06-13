@@ -1,12 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import crypto from 'crypto';
 import querystring from 'querystring';
+
 import { sha256, uniqueRid, validateRid, createEncryptionToken, decrypt, encrypt } from "./tools"
 
 import getServiceWidget from "utils/config/service-helpers";
 import { httpProxy } from "utils/proxy/http";
 import createLogger from "utils/logger";
-
 
 const proxyName = "jdownloaderProxyHandler";
 const logger = createLogger(proxyName);
@@ -28,7 +28,8 @@ async function getWidget(req) {
 
 async function login(loginSecret, deviceSecret, params) {
     const rid = uniqueRid();
-    const path = `/my/connect?${querystring.stringify(Object.assign({}, params, { rid }))}`;
+    const path = `/my/connect?${querystring.stringify({...params, rid})}`;
+    
     const signature = crypto
         .createHmac('sha256', loginSecret)
         .update(path)
@@ -63,7 +64,7 @@ async function login(loginSecret, deviceSecret, params) {
 
 async function getDevice(serverEncryptionToken, deviceName, params) {
     const rid = uniqueRid();
-    const path = `/my/listdevices?${querystring.stringify(Object.assign({}, params, { rid }))}`;
+    const path = `/my/listdevices?${querystring.stringify({...params, rid})}`;
     const signature = crypto
         .createHmac('sha256', serverEncryptionToken)
         .update(path)
@@ -99,7 +100,7 @@ function createBody(rid, query, params) {
         rid,
         url: query
     };
-    return params ? Object.assign({}, baseBody, { params: [JSON.stringify(params)] }) : baseBody;
+    return params ? {...baseBody, params: [JSON.stringify(params)] } : baseBody;
 }
 
 async function queryPackages(deviceEncryptionToken, deviceId, sessionToken, params) {
