@@ -132,7 +132,7 @@
     "lidarr": {
         "wanted": "Aranan",
         "queued": "Kuyrukta",
-        "albums": "Albümler"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Aranan",

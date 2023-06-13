@@ -250,7 +250,7 @@
     "lidarr": {
         "wanted": "Iskano",
         "queued": "V vrsti",
-        "albums": "Albumi"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Iskano",

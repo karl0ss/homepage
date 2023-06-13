@@ -177,7 +177,7 @@
     "lidarr": {
         "wanted": "订阅",
         "queued": "队列",
-        "albums": "相册"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "查询",

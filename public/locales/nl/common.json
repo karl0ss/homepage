@@ -177,7 +177,7 @@
     "lidarr": {
         "wanted": "Gezocht",
         "queued": "In de wachtrij",
-        "albums": "Albums"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "Queries",
