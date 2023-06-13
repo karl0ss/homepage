@@ -1,10 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import crypto from 'crypto';
 import querystring from 'querystring';
+import { sha256, uniqueRid, validateRid, createEncryptionToken, decrypt, encrypt } from "./tools"
+
 import getServiceWidget from "utils/config/service-helpers";
 import { httpProxy } from "utils/proxy/http";
 import createLogger from "utils/logger";
-import { sha256, uniqueRid, validateRid, createEncryptionToken, decrypt, encrypt } from "./tools"
+
 
 const proxyName = "jdownloaderProxyHandler";
 const logger = createLogger(proxyName);
@@ -26,9 +28,7 @@ async function getWidget(req) {
 
 async function login(loginSecret, deviceSecret, params) {
     const rid = uniqueRid();
-    const path = '/my/connect' +
-        '?' +
-        querystring.stringify(Object.assign({}, params, { rid }));
+    const path = `/my/connect?${querystring.stringify(Object.assign({}, params, { rid }))}`;
     const signature = crypto
         .createHmac('sha256', loginSecret)
         .update(path)
@@ -63,16 +63,14 @@ async function login(loginSecret, deviceSecret, params) {
 
 async function getDevice(serverEncryptionToken, deviceName, params) {
     const rid = uniqueRid();
-    const path = '/my/listdevices' +
-        '?' +
-        querystring.stringify(Object.assign({}, params, { rid }));
+    const path = `/my/listdevices?${querystring.stringify(Object.assign({}, params, { rid }))}`;
     const signature = crypto
         .createHmac('sha256', serverEncryptionToken)
         .update(path)
         .digest('hex');
     const url = `${new URL(`https://api.jdownloader.org${path}&signature=${signature}`)}`
 
-    const [status, contentType, data] = await httpProxy(url, {
+    const [status, , data] = await httpProxy(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -86,13 +84,11 @@ async function getDevice(serverEncryptionToken, deviceName, params) {
 
     try {
         const decryptedData = JSON.parse(decrypt(data.toString(), serverEncryptionToken))
-        const filteredDevice = decryptedData.list.filter(function (device) {
-            return device.name == deviceName;
-        });
+        const filteredDevice = decryptedData.list.filter(device => device.name === deviceName);
         return [status, filteredDevice[0].id];
     } catch (e) {
         logger.error("Error decoding jdownloader API data. Data: %s", data.toString());
-        return [status, None];
+        return [status, null];
     }
 
 }
@@ -109,8 +105,8 @@ function createBody(rid, query, params) {
 async function queryPackages(deviceEncryptionToken, deviceId, sessionToken, params) {
     const rid = uniqueRid();
     const body = encrypt(JSON.stringify(createBody(rid, '/downloadsV2/queryPackages', params)), deviceEncryptionToken);
-    const url = `${new URL('https://api.jdownloader.org/t_' + encodeURI(sessionToken) + '_' + encodeURI(deviceId) + '/downloadsV2/queryPackages')}`
-    const [status, contentType, data] = await httpProxy(url, {
+    const url = `${new URL(`https://api.jdownloader.org/t_${encodeURI(sessionToken)}_${encodeURI(deviceId)}/downloadsV2/queryPackages`)}`
+    const [status, , data] = await httpProxy(url, {
         method: 'POST',
         body,
     });
@@ -125,7 +121,7 @@ async function queryPackages(deviceEncryptionToken, deviceId, sessionToken, para
         return decryptedData.data;
     } catch (e) {
         logger.error("Error decoding JDRss jdownloader data. Data: %s", data.toString());
-        return [status, None];
+        return [status, null];
     }
 
 }
@@ -141,8 +137,8 @@ export default async function jdownloaderProxyHandler(req, res) {
     const username = widget.username
     const password = widget.password
     const appKey = "homepage"
-    const loginSecret = sha256(username + password + 'server')
-    const deviceSecret = sha256(username + password + 'device')
+    const loginSecret = sha256(`${username}${password}server`)
+    const deviceSecret = sha256(`${username}${password}device`)
     const email = username;
 
     const loginData = await login(loginSecret, deviceSecret, {
