@@ -1,12 +1,13 @@
 import jdownloaderProxyHandler from "./proxy";
 
 const widget = {
-  api: "{url}/api/{endpoint}",
+  api: "https://api.jdownloader.org/{endpoint}/&signature={signature}",
   proxyHandler: jdownloaderProxyHandler,
 
   mappings: {
     unified: {
       endpoint: "/",
+      signature: "",
     },
   },
 };
