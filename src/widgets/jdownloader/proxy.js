@@ -134,8 +134,9 @@ export default async function jdownloaderProxyHandler(req, res) {
         return res.status(400).json({ error: "Invalid proxy service type" });
     }
     logger.debug("Getting data from JDRss API");
-    const username = widget.username
-    const password = widget.password
+    const {username} = widget
+    const {password} = widget
+    
     const appKey = "homepage"
     const loginSecret = sha256(`${username}${password}server`)
     const deviceSecret = sha256(`${username}${password}device`)
