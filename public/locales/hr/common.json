@@ -140,7 +140,7 @@
     "lidarr": {
         "wanted": "Zatraženo",
         "queued": "U redu čekanja",
-        "albums": "Albumi"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Zatraženo",

@@ -177,7 +177,7 @@
     "lidarr": {
         "wanted": "Mancanti",
         "queued": "In coda",
-        "albums": "Album"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "Interrogazioni",
