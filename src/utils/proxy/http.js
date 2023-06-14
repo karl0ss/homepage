@@ -35,6 +35,11 @@ function handleRequest(requestor, url, params) {
       let responseContent = response;
       if (contentEncoding === 'gzip' || contentEncoding === 'deflate') {
         responseContent = createUnzip();
+        // zlib errors
+        responseContent.on("error", (e) => {
+          logger.error(e);
+          responseContent = response; // fallback
+        });
         response.pipe(responseContent);
       }
 

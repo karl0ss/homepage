@@ -654,18 +654,6 @@
         "monitoring": "Monitoring",
         "updates": "Updates"
     },
-    "nextpvr": {
-        "upcoming": "Upcoming",
-        "ready": "Recent"
-    },
-    "jdrssdownloader": {
-        "totalShows": "Tracked Shows",
-        "retryCache": "Retry Cache",
-        "feedCache": "Feed Cache"
-    },
-    "wgeasy": {
-        "clients": "Total Clients"
-    },
     "jdownloader": {
         "downloadCount": "Queue Count",
         "downloadQueueSize": "Queue Size",
