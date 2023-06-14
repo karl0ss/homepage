@@ -92,7 +92,7 @@
         "episodes": "Episodes",
         "songs": "Songs"
     },
-	"evcc": {
+    "evcc": {
         "pv_power": "Production",
         "battery_soc": "Battery",
         "grid_power": "Grid",
@@ -658,5 +658,9 @@
         "downloadCount": "Queue Count",
         "downloadQueueSize": "Queue Size",
         "downloadSpeed": "Download Speed"
+    },
+    "nextpvr": {
+        "upcoming": "Upcoming",
+        "ready": "Recent"
     }
 }
