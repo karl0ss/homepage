@@ -235,18 +235,22 @@
     "sonarr": {
         "wanted": "Iskano",
         "queued": "V vrsti",
-        "series": "Serije"
+        "series": "Serije",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "Iskano",
         "missing": "Manjka",
         "queued": "V vrsti",
-        "movies": "Filmi"
+        "movies": "Filmi",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "lidarr": {
         "wanted": "Iskano",
         "queued": "V vrsti",
-        "albums": "Albumi"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Iskano",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

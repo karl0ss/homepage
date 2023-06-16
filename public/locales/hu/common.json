@@ -31,9 +31,9 @@
         "healthy": "Healthy"
     },
     "lidarr": {
-        "albums": "Albumok",
         "wanted": "Keresett",
-        "queued": "Sorban áll"
+        "queued": "Sorban áll",
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Keresett",
@@ -108,13 +108,17 @@
     "sonarr": {
         "wanted": "Keresett",
         "queued": "Sorban áll",
-        "series": "Sorozat"
+        "series": "Sorozat",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "Keresett",
         "queued": "Sorban áll",
         "movies": "Filmek",
-        "missing": "Missing"
+        "missing": "Missing",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "ombi": {
         "pending": "Függőben",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadSpeed": "Download Speed",
+        "downloadCount": "Queue Count",
+        "downloadTotalBytes": "Size",
+        "downloadBytesRemaining": "Remaining"
     }
 }

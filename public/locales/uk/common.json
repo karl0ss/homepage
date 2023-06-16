@@ -232,18 +232,22 @@
     "sonarr": {
         "wanted": "Розшукується",
         "queued": "У черзі",
-        "series": "Серії"
+        "series": "Серії",
+        "queue": "Черга",
+        "unknown": "Невідомо"
     },
     "radarr": {
         "wanted": "Розшукується",
         "missing": "Відсутній",
         "queued": "У черзі",
-        "movies": "Фільми"
+        "movies": "Фільми",
+        "queue": "Черга",
+        "unknown": "Невідомо"
     },
     "lidarr": {
         "wanted": "Розшукується",
         "queued": "У черзі",
-        "albums": "Альбоми"
+        "artists": "Виконавці"
     },
     "traefik": {
         "middleware": "Проміжне програмне забезпечення",
@@ -640,5 +644,11 @@
         "connected": "Підключено",
         "new_devices": "Нові пристрої",
         "down_alerts": "Сповіщення про збій"
+    },
+    "jdownloader": {
+        "downloadCount": "Всього в черзі",
+        "downloadSpeed": "Швидкість завантаження",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

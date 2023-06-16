@@ -112,18 +112,22 @@
     "sonarr": {
         "wanted": "Desejado",
         "queued": "Na fila",
-        "series": "Séries"
+        "series": "Séries",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "Desejado",
         "queued": "Na fila",
         "movies": "Filmes",
-        "missing": "Faltando"
+        "missing": "Faltando",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "lidarr": {
         "wanted": "Desejado",
         "queued": "Na fila",
-        "albums": "Álbuns"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Desejado",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

@@ -117,18 +117,22 @@
     "sonarr": {
         "wanted": "Wanted",
         "queued": "Queued",
-        "series": "Series"
+        "series": "Series",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "Wanted",
         "queued": "Queued",
         "movies": "Movies",
-        "missing": "Missing"
+        "missing": "Missing",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "lidarr": {
         "wanted": "Wanted",
         "queued": "Queued",
-        "albums": "Albums"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Wanted",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

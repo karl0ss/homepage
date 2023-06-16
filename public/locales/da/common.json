@@ -9,12 +9,14 @@
         "queued": "I Kø",
         "movies": "Film",
         "wanted": "Ønskede",
-        "missing": "Mangler"
+        "missing": "Mangler",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "lidarr": {
         "wanted": "Ønsket",
         "queued": "I Kø",
-        "albums": "Albums"
+        "artists": "Artists"
     },
     "jellyseerr": {
         "available": "Tilgængelig",
@@ -264,7 +266,9 @@
     "sonarr": {
         "wanted": "Ønsket",
         "queued": "I Kø",
-        "series": "Serier"
+        "series": "Serier",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "readarr": {
         "wanted": "Ønskede",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadSpeed": "Download Speed",
+        "downloadCount": "Queue Count",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

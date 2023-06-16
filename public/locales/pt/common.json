@@ -66,13 +66,17 @@
     "sonarr": {
         "wanted": "Desejada",
         "queued": "Em fila",
-        "series": "Séries"
+        "series": "Séries",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "Desejado",
         "queued": "Fila",
         "movies": "Filmes",
-        "missing": "Faltando"
+        "missing": "Faltando",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "readarr": {
         "wanted": "Desejados",
@@ -186,7 +190,7 @@
     "lidarr": {
         "queued": "Enfileirado",
         "wanted": "Desejado",
-        "albums": "Álbuns"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "Consultas",
@@ -586,12 +590,12 @@
         "switches_on": "Interruptores Ligados"
     },
     "freshrss": {
-        "subscriptions": "Subscriptions",
-        "unread": "Unread"
+        "subscriptions": "Assinaturas",
+        "unread": "Não lida"
     },
     "channelsdvrserver": {
         "shows": "Shows",
-        "recordings": "Recordings",
+        "recordings": "Gravações",
         "scheduled": "Scheduled",
         "passes": "Passes"
     },
@@ -633,21 +637,27 @@
     },
     "caddy": {
         "upstreams": "Upstreams",
-        "requests": "Current requests",
-        "requests_failed": "Failed requests"
+        "requests": "Solicitações atuais",
+        "requests_failed": "Solicitações com falha"
     },
     "evcc": {
-        "pv_power": "Production",
-        "battery_soc": "Battery",
-        "grid_power": "Grid",
-        "home_power": "Consumption",
-        "charge_power": "Charger",
-        "watt_hour": "Wh"
+        "pv_power": "Produção",
+        "battery_soc": "Bateria",
+        "grid_power": "Grade",
+        "home_power": "Consumo",
+        "charge_power": "Carregador",
+        "watt_hour": "Kw"
     },
     "pialert": {
         "total": "Total",
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

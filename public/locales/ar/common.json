@@ -23,7 +23,7 @@
         "free": "متاح",
         "used": "مستخدم",
         "load": "الضغط",
-        "mem": "MEM",
+        "mem": "الذاكرة",
         "temp": "TEMP",
         "max": "Max",
         "uptime": "UP",
@@ -134,7 +134,7 @@
         "episodes": "Episodes"
     },
     "changedetectionio": {
-        "totalObserved": "Total Observed",
+        "totalObserved": "مجموع الملاحظات",
         "diffsDetected": "Diffs Detected"
     },
     "tautulli": {
@@ -179,18 +179,22 @@
     "sonarr": {
         "wanted": "مطلوب",
         "queued": "في الإنتظار",
-        "series": "سلسلة"
+        "series": "سلسلة",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "مطلوب",
         "missing": "مفقود",
         "queued": "في الإنتظار",
-        "movies": "أفلام"
+        "movies": "أفلام",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "lidarr": {
         "wanted": "مطلوب",
         "queued": "في الإنتظار",
-        "albums": "ألبومات"
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "مطلوب",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

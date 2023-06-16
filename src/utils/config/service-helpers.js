@@ -63,10 +63,10 @@ export async function servicesFromDocker() {
   const serviceServers = await Promise.all(
     Object.keys(servers).map(async (serverName) => {
       try {
+        const isSwarm = !!servers[serverName].swarm;
         const docker = new Docker(getDockerArguments(serverName).conn);
-        const containers = await docker.listContainers({
-          all: true,
-        });
+        const listProperties = { all: true };
+        const containers = await ((isSwarm) ? docker.listServices(listProperties) : docker.listContainers(listProperties));
 
         // bad docker connections can result in a <Buffer ...> object?
         // in any case, this ensures the result is the expected array
@@ -76,17 +76,19 @@ export async function servicesFromDocker() {
 
         const discovered = containers.map((container) => {
           let constructedService = null;
+          const containerLabels = isSwarm ? shvl.get(container, 'Spec.Labels') : container.Labels;
+          const containerName = isSwarm ? shvl.get(container, 'Spec.Name') : container.Names[0];
 
-          Object.keys(container.Labels).forEach((label) => {
+          Object.keys(containerLabels).forEach((label) => {
             if (label.startsWith("homepage.")) {
               if (!constructedService) {
                 constructedService = {
-                  container: container.Names[0].replace(/^\//, ""),
+                  container: containerName.replace(/^\//, ""),
                   server: serverName,
                   type: 'service'
                 };
               }
-              shvl.set(constructedService, label.replace("homepage.", ""), substituteEnvironmentVars(container.Labels[label]));
+              shvl.set(constructedService, label.replace("homepage.", ""), substituteEnvironmentVars(containerLabels[label]));
             }
           });
 
@@ -156,11 +158,20 @@ export async function servicesFromKubernetes() {
         return null;
       });
 
-     const traefikIngressList = await crd.listClusterCustomObject("traefik.containo.us", "v1alpha1", "ingressroutes")
+    const traefikIngressList = await crd.listClusterCustomObject("traefik.io", "v1alpha1", "ingressroutes")
       .then((response) => response.body)
-      .catch((error) => {
-        logger.error("Error getting traefik ingresses: %d %s %s", error.statusCode, error.body, error.response);
-        return null;
+      .catch(async (error) => {
+        logger.error("Error getting traefik ingresses from traefik.io: %d %s %s", error.statusCode, error.body, error.response);
+
+        // Fallback to the old traefik CRD group
+        const fallbackIngressList = await crd.listClusterCustomObject("traefik.containo.us", "v1alpha1", "ingressroutes")
+          .then((response) => response.body)
+          .catch((fallbackError) => {
+            logger.error("Error getting traefik ingresses from traefik.containo.us: %d %s %s", fallbackError.statusCode, fallbackError.body, fallbackError.response);
+            return null;
+          });
+
+        return fallbackIngressList;
       });
 
     if (traefikIngressList && traefikIngressList.items.length > 0) {
@@ -168,7 +179,7 @@ export async function servicesFromKubernetes() {
       .filter((ingress) => ingress.metadata.annotations && ingress.metadata.annotations[`${ANNOTATION_BASE}/href`])
       ingressList.items.push(...traefikServices);
     }
-    
+
     if (!ingressList) {
       return [];
     }
@@ -276,7 +287,8 @@ export function cleanServiceGroups(groups) {
           wan, // opnsense widget, pfsense widget
           enableBlocks, // emby/jellyfin
           enableNowPlaying,
-          volume, // diskstation widget
+          volume, // diskstation widget,
+          enableQueue, // sonarr/radarr
         } = cleanedService.widget;
 
         const fieldsList = typeof fields === 'string' ? JSON.parse(fields) : fields;
@@ -312,6 +324,9 @@ export function cleanServiceGroups(groups) {
           if (enableBlocks !== undefined) cleanedService.widget.enableBlocks = JSON.parse(enableBlocks);
           if (enableNowPlaying !== undefined) cleanedService.widget.enableNowPlaying = JSON.parse(enableNowPlaying);
         }
+        if (["sonarr", "radarr"].includes(type)) {
+          if (enableQueue !== undefined) cleanedService.widget.enableQueue = JSON.parse(enableQueue);
+        }
         if (["diskstation", "qnap"].includes(type)) {
           if (volume) cleanedService.widget.volume = volume;
         }
@@ -322,16 +337,13 @@ export function cleanServiceGroups(groups) {
   }));
 }
 
-export default async function getServiceWidget(group, service) {
+export async function getServiceItem(group, service) {
   const configuredServices = await servicesFromConfig();
 
   const serviceGroup = configuredServices.find((g) => g.name === group);
   if (serviceGroup) {
     const serviceEntry = serviceGroup.services.find((s) => s.name === service);
-    if (serviceEntry) {
-      const { widget } = serviceEntry;
-      return widget;
-    }
+    if (serviceEntry) return serviceEntry;
   }
 
   const discoveredServices = await servicesFromDocker();
@@ -339,20 +351,24 @@ export default async function getServiceWidget(group, service) {
   const dockerServiceGroup = discoveredServices.find((g) => g.name === group);
   if (dockerServiceGroup) {
     const dockerServiceEntry = dockerServiceGroup.services.find((s) => s.name === service);
-    if (dockerServiceEntry) {
-      const { widget } = dockerServiceEntry;
-      return widget;
-    }
+    if (dockerServiceEntry) return dockerServiceEntry;
   }
 
   const kubernetesServices = await servicesFromKubernetes();
   const kubernetesServiceGroup = kubernetesServices.find((g) => g.name === group);
   if (kubernetesServiceGroup) {
     const kubernetesServiceEntry = kubernetesServiceGroup.services.find((s) => s.name === service);
-    if (kubernetesServiceEntry) {
-      const { widget } = kubernetesServiceEntry;
-      return widget;
-    }
+    if (kubernetesServiceEntry) return kubernetesServiceEntry;
+  }
+
+  return false;
+}
+
+export default async function getServiceWidget(group, service) {
+  const serviceItem = await getServiceItem(group, service);
+  if (serviceItem) {
+    const { widget } = serviceItem;
+    return widget;
   }
 
   return false;

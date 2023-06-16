@@ -33,8 +33,8 @@
     },
     "lidarr": {
         "queued": "Dibaris Gilir",
-        "albums": "Album",
-        "wanted": "Mahu"
+        "wanted": "Mahu",
+        "artists": "Artists"
     },
     "readarr": {
         "wanted": "Mahu",
@@ -233,13 +233,17 @@
     "sonarr": {
         "wanted": "Mahu",
         "queued": "Dibaris Gilir",
-        "series": "Bersiri"
+        "series": "Bersiri",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "Mahu",
         "missing": "Hilang",
         "queued": "Dibaris Gilir",
-        "movies": "Filem"
+        "movies": "Filem",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "bazarr": {
         "missingEpisodes": "Episod Yang Hilang",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

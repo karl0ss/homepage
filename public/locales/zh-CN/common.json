@@ -66,13 +66,17 @@
     "sonarr": {
         "wanted": "想看",
         "queued": "排队",
-        "series": "系列"
+        "series": "系列",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "想看",
         "queued": "队列",
         "movies": "电影",
-        "missing": "丢失"
+        "missing": "丢失",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "readarr": {
         "wanted": "订阅",
@@ -173,7 +177,7 @@
     "lidarr": {
         "wanted": "订阅",
         "queued": "队列",
-        "albums": "相册"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "查询",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

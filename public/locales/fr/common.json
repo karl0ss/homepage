@@ -66,13 +66,17 @@
     "sonarr": {
         "wanted": "Demande",
         "queued": "Attente",
-        "series": "Séries"
+        "series": "Séries",
+        "queue": "Attente",
+        "unknown": "Inconnu"
     },
     "radarr": {
         "wanted": "Demande",
         "queued": "Attente",
         "movies": "Films",
-        "missing": "Manquant"
+        "missing": "Manquant",
+        "queue": "Attente",
+        "unknown": "Inconnu"
     },
     "readarr": {
         "wanted": "Demande",
@@ -173,7 +177,7 @@
     "lidarr": {
         "wanted": "Demandé",
         "queued": "En queue",
-        "albums": "Albums"
+        "artists": "Artistes"
     },
     "adguard": {
         "queries": "Requêtes",
@@ -397,7 +401,7 @@
         "queue": "À traiter",
         "processed": "Traité",
         "errored": "En erreur",
-        "saved": "Economisé"
+        "saved": "Libéré"
     },
     "miniflux": {
         "read": "Lu",
@@ -640,5 +644,11 @@
         "connected": "Connecté",
         "new_devices": "Nouvel Appareil",
         "down_alerts": "Alertes"
+    },
+    "jdownloader": {
+        "downloadCount": "Total en attente",
+        "downloadSpeed": "Vitesse de téléchargement",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

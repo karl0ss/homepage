@@ -88,12 +88,16 @@
         "movies": "電影",
         "wanted": "關注中",
         "queued": "已加入佇列",
-        "missing": "缺少"
+        "missing": "缺少",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "sonarr": {
         "wanted": "關注中",
         "queued": "已加入佇列",
-        "series": "影集"
+        "series": "影集",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "readarr": {
         "wanted": "關注中",
@@ -173,7 +177,7 @@
     "lidarr": {
         "wanted": "關注中",
         "queued": "已加入佇列",
-        "albums": "專輯"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "查詢",
@@ -640,5 +644,11 @@
         "connected": "已連線",
         "new_devices": "新裝置",
         "down_alerts": "離線警告"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

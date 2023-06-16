@@ -26,7 +26,9 @@
     "sonarr": {
         "wanted": "Volgut",
         "queued": "En cua",
-        "series": "Sèries"
+        "series": "Sèries",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "speedtest": {
         "ping": "Ping",
@@ -99,7 +101,9 @@
         "wanted": "Volgut",
         "queued": "En cua",
         "movies": "Pel·lícules",
-        "missing": "Faltant"
+        "missing": "Faltant",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "readarr": {
         "wanted": "Volgut",
@@ -173,7 +177,7 @@
     "lidarr": {
         "wanted": "Volgut",
         "queued": "En cua",
-        "albums": "Àlbums"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "Consultes",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

@@ -111,18 +111,22 @@
     "sonarr": {
         "wanted": "కావలెను",
         "queued": "క్యూయూఎడ్",
-        "series": "సిరీస్"
+        "series": "సిరీస్",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "wanted": "కావలెను",
         "queued": "క్యూయూఎడ్",
         "movies": "సినిమాలు",
-        "missing": "మిస్సింగ్"
+        "missing": "మిస్సింగ్",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "lidarr": {
         "wanted": "కావలెను",
         "queued": "క్యూయూఎడ్",
-        "albums": "ఆల్బములు"
+        "artists": "Artists"
     },
     "bazarr": {
         "missingEpisodes": "ఎపిసోడ్‌లు లేవు",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }

@@ -82,13 +82,17 @@
     "sonarr": {
         "wanted": "Gezocht",
         "queued": "In de wachtrij",
-        "series": "Series"
+        "series": "Series",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "radarr": {
         "movies": "Films",
         "wanted": "Gezocht",
         "queued": "In de wachtrij",
-        "missing": "Missend"
+        "missing": "Missend",
+        "queue": "Queue",
+        "unknown": "Unknown"
     },
     "readarr": {
         "wanted": "Gezocht",
@@ -173,7 +177,7 @@
     "lidarr": {
         "wanted": "Gezocht",
         "queued": "In de wachtrij",
-        "albums": "Albums"
+        "artists": "Artists"
     },
     "adguard": {
         "queries": "Queries",
@@ -640,5 +644,11 @@
         "connected": "Connected",
         "new_devices": "New Devices",
         "down_alerts": "Down Alerts"
+    },
+    "jdownloader": {
+        "downloadCount": "Queue Count",
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
     }
 }
