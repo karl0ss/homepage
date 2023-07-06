@@ -646,9 +646,13 @@
         "down_alerts": "Сповіщення про збій"
     },
     "jdownloader": {
-        "downloadCount": "Всього в черзі",
-        "downloadSpeed": "Швидкість завантаження",
-        "downloadBytesRemaining": "Remaining",
-        "downloadTotalBytes": "Size"
+        "downloadCount": "Черга",
+        "downloadSpeed": "Швидкість",
+        "downloadBytesRemaining": "Залишилося",
+        "downloadTotalBytes": "Розмір"
+    },
+    "kavita": {
+        "seriesCount": "Серій",
+        "totalFiles": "Файлів"
     }
 }

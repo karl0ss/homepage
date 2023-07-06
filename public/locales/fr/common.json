@@ -5,8 +5,8 @@
         "status": "Statut",
         "information": "Information",
         "url": "URL",
-        "raw_error": "Raw Error",
-        "response_data": "Response Data"
+        "raw_error": "Erreur brute",
+        "response_data": "Données de réponse"
     },
     "search": {
         "placeholder": "Recherche…"
@@ -578,7 +578,7 @@
     "homeassistant": {
         "people_home": "People Home",
         "lights_on": "Lumières allumées",
-        "switches_on": "Switches On"
+        "switches_on": "Commutateur On"
     },
     "freshrss": {
         "unread": "Non lu",
@@ -648,7 +648,11 @@
     "jdownloader": {
         "downloadCount": "Total en attente",
         "downloadSpeed": "Vitesse de téléchargement",
-        "downloadBytesRemaining": "Remaining",
-        "downloadTotalBytes": "Size"
+        "downloadBytesRemaining": "Restant",
+        "downloadTotalBytes": "Taille"
+    },
+    "kavita": {
+        "seriesCount": "Séries",
+        "totalFiles": "Fichiers"
     }
 }

@@ -28,6 +28,7 @@ import immich from "./immich/widget";
 import jackett from "./jackett/widget";
 import jellyseerr from "./jellyseerr/widget";
 import jdownloader from "./jdownloader/widget";
+import kavita from "./kavita/widget";
 import komga from "./komga/widget";
 import kopia from "./kopia/widget";
 import lidarr from "./lidarr/widget";
@@ -104,7 +105,7 @@ const widgets = {
   diskstation,
   downloadstation,
   emby,
-  evcc, 
+  evcc,
   fileflows,
   flood,
   freshrss,
@@ -123,6 +124,7 @@ const widgets = {
   jdrssdownloader,
   jdownloader,
   jellyseerr,
+  kavita,
   komga,
   kopia,
   lidarr,

@@ -239,7 +239,7 @@
         "queries": "クエリ",
         "blocked": "ブロック中",
         "gravity": "グラビティ",
-        "blocked_percent": "Blocked %"
+        "blocked_percent": "ブロック %"
     },
     "adguard": {
         "queries": "クエリ",
@@ -650,5 +650,9 @@
         "downloadSpeed": "Download Speed",
         "downloadBytesRemaining": "Remaining",
         "downloadTotalBytes": "Size"
+    },
+    "kavita": {
+        "seriesCount": "Series",
+        "totalFiles": "Files"
     }
 }
