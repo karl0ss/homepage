@@ -655,7 +655,7 @@
         "ready": "Recent"
     },
     "jdrssdownloader": {
-        "totalShows": "Tracked Shows",
+        "totalShows": "Tracked",
         "retryCache": "Retry Cache",
         "feedCache": "Feed Cache"
     },
