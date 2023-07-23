@@ -234,7 +234,8 @@
         "playing": "Afspiller",
         "transcoding": "Transcoder",
         "bitrate": "Bitrate",
-        "no_active": "Ingen Aktive Streams"
+        "no_active": "Ingen Aktive Streams",
+        "plex_connection_error": "Check Plex Connection"
     },
     "nzbget": {
         "rate": "Rate",
@@ -648,6 +649,21 @@
     "jdownloader": {
         "downloadSpeed": "Download Speed",
         "downloadCount": "Queue Count",
-        "downloadQueueSize": "Queue Size"
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
+    },
+    "kavita": {
+        "seriesCount": "Series",
+        "totalFiles": "Files"
+    },
+    "azurePipelines": {
+        "result": "Result",
+        "status": "Status",
+        "buildId": "Build ID",
+        "succeeded": "Succeeded",
+        "notStarted": "Not Started",
+        "failed": "Failed",
+        "canceled": "Canceled",
+        "inProgress": "In Progress"
     }
 }

@@ -2,6 +2,7 @@ import adguard from "./adguard/widget";
 import audiobookshelf from "./audiobookshelf/widget";
 import authentik from "./authentik/widget";
 import autobrr from "./autobrr/widget";
+import azurePipelines from "./azurePipelines/widget";
 import bazarr from "./bazarr/widget";
 import caddy from "./caddy/widget";
 import changedetectionio from "./changedetectionio/widget";
@@ -28,6 +29,7 @@ import immich from "./immich/widget";
 import jackett from "./jackett/widget";
 import jellyseerr from "./jellyseerr/widget";
 import jdownloader from "./jdownloader/widget";
+import kavita from "./kavita/widget";
 import komga from "./komga/widget";
 import kopia from "./kopia/widget";
 import lidarr from "./lidarr/widget";
@@ -93,6 +95,7 @@ const widgets = {
   audiobookshelf,
   authentik,
   autobrr,
+  azurePipelines,
   bazarr,
   caddy,
   changedetectionio,
@@ -103,7 +106,7 @@ const widgets = {
   diskstation,
   downloadstation,
   emby,
-  evcc, 
+  evcc,
   fileflows,
   flood,
   freshrss,
@@ -121,6 +124,7 @@ const widgets = {
   jdrssdownloader,
   jdownloader,
   jellyseerr,
+  kavita,
   komga,
   kopia,
   lidarr,

@@ -13,7 +13,8 @@
         "playing": "播放緊",
         "no_active": "無任何活動",
         "transcoding": "轉碼緊",
-        "bitrate": "比特率"
+        "bitrate": "比特率",
+        "plex_connection_error": "Check Plex Connection"
     },
     "transmission": {
         "download": "下載速度",
@@ -647,7 +648,22 @@
     },
     "jdownloader": {
         "downloadCount": "Queue Count",
-        "downloadQueueSize": "Queue Size",
-        "downloadSpeed": "Download Speed"
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
+    },
+    "kavita": {
+        "seriesCount": "Series",
+        "totalFiles": "Files"
+    },
+    "azurePipelines": {
+        "result": "Result",
+        "status": "Status",
+        "buildId": "Build ID",
+        "succeeded": "Succeeded",
+        "notStarted": "Not Started",
+        "failed": "Failed",
+        "canceled": "Canceled",
+        "inProgress": "In Progress"
     }
 }

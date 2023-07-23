@@ -62,7 +62,8 @@
         "playing": "מנגן",
         "transcoding": "מקודד",
         "bitrate": "סיביות",
-        "no_active": "אין הזרמות פעילות"
+        "no_active": "אין הזרמות פעילות",
+        "plex_connection_error": "Check Plex Connection"
     },
     "nzbget": {
         "rate": "יחס",
@@ -647,7 +648,22 @@
     },
     "jdownloader": {
         "downloadCount": "Queue Count",
-        "downloadQueueSize": "Queue Size",
-        "downloadSpeed": "Download Speed"
+        "downloadSpeed": "Download Speed",
+        "downloadBytesRemaining": "Remaining",
+        "downloadTotalBytes": "Size"
+    },
+    "kavita": {
+        "seriesCount": "Series",
+        "totalFiles": "Files"
+    },
+    "azurePipelines": {
+        "result": "Result",
+        "status": "Status",
+        "buildId": "Build ID",
+        "succeeded": "Succeeded",
+        "notStarted": "Not Started",
+        "failed": "Failed",
+        "canceled": "Canceled",
+        "inProgress": "In Progress"
     }
 }
