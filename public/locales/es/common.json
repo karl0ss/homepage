@@ -56,7 +56,8 @@
         "playing": "Reproduciendo",
         "transcoding": "Transcodificando",
         "bitrate": "Tasa de bits",
-        "no_active": "Sin transmisiones activas"
+        "no_active": "Sin transmisiones activas",
+        "plex_connection_error": "Comprueba la conexión a Plex"
     },
     "rutorrent": {
         "active": "Activo",
@@ -654,5 +655,15 @@
     "kavita": {
         "seriesCount": "Serie",
         "totalFiles": "Archivos"
+    },
+    "azurePipelines": {
+        "result": "Resultado",
+        "status": "Estado",
+        "buildId": "ID de la compilación",
+        "succeeded": "Con éxito",
+        "notStarted": "No iniciado",
+        "failed": "Fallido",
+        "canceled": "Cancelado",
+        "inProgress": "En proceso"
     }
 }

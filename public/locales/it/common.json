@@ -29,7 +29,8 @@
         "playing": "In riproduzione",
         "transcoding": "Transcodifica",
         "bitrate": "Bitrate",
-        "no_active": "Nessuno Stream Attivo"
+        "no_active": "Nessuno Stream Attivo",
+        "plex_connection_error": "Check Plex Connection"
     },
     "speedtest": {
         "upload": "Upload",
@@ -654,5 +655,15 @@
     "kavita": {
         "seriesCount": "Serie",
         "totalFiles": "File"
+    },
+    "azurePipelines": {
+        "result": "Result",
+        "status": "Status",
+        "buildId": "Build ID",
+        "succeeded": "Succeeded",
+        "notStarted": "Not Started",
+        "failed": "Failed",
+        "canceled": "Canceled",
+        "inProgress": "In Progress"
     }
 }

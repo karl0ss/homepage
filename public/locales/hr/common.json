@@ -104,7 +104,8 @@
         "playing": "Reprodukcija",
         "transcoding": "Prekodiranje",
         "bitrate": "Stopa bitova",
-        "no_active": "Nema aktivnih prijenosa"
+        "no_active": "Nema aktivnih prijenosa",
+        "plex_connection_error": "Provjeri Plex vezu"
     },
     "nzbget": {
         "rate": "Stopa",
@@ -654,5 +655,15 @@
     "kavita": {
         "seriesCount": "Serije",
         "totalFiles": "Datoteke"
+    },
+    "azurePipelines": {
+        "result": "Result",
+        "status": "Status",
+        "buildId": "Build ID",
+        "succeeded": "Succeeded",
+        "notStarted": "Not Started",
+        "failed": "Failed",
+        "canceled": "Canceled",
+        "inProgress": "In Progress"
     }
 }
