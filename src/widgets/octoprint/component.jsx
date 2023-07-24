@@ -1,6 +1,7 @@
 import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
+import { Buffer } from 'buffer';
 
 export default function Component({ service }) {
   const { widget } = service;
@@ -9,7 +10,13 @@ export default function Component({ service }) {
   const { data: jobStats, error: jobStatsError } = useWidgetAPI(widget, "job_stats");
 
   if (printerStatsError) {
-    return <Container service={service} error={printerStatsError} />;
+    let msg
+    msg = JSON.parse(new Buffer.from(printerStatsError.resultData.data).toString());
+    return (
+      <Container service={service}>
+        <Block label="OFFLINE" value={msg.error} />
+      </Container>
+    );
   }
 
   if (jobStatsError) {
