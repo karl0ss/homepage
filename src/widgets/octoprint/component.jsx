@@ -10,8 +10,7 @@ export default function Component({ service }) {
   const { data: jobStats, error: jobStatsError } = useWidgetAPI(widget, "job_stats");
 
   if (printerStatsError) {
-    let msg
-    msg = JSON.parse(new Buffer.from(printerStatsError.resultData.data).toString());
+    const msg = JSON.parse(new Buffer.from(printerStatsError.resultData.data).toString());
     return (
       <Container service={service}>
         <Block label="OFFLINE" value={msg.error} />
