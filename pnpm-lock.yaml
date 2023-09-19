@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@headlessui/react':
     specifier: ^1.7.2
@@ -29,9 +25,6 @@ dependencies:
   i18next:
     specifier: ^21.9.2
     version: 21.10.0
-  jdownloader-client:
-    specifier: ^1.0.0
-    version: 1.0.0
   js-yaml:
     specifier: ^4.1.0
     version: 4.1.0
@@ -68,12 +61,12 @@ dependencies:
   react-icons:
     specifier: ^4.4.0
     version: 4.8.0(react@18.2.0)
-  salted-md5:
-    specifier: ^4.0.5
-    version: 4.0.5
   recharts:
     specifier: ^2.7.2
     version: 2.7.2(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+  salted-md5:
+    specifier: ^4.0.5
+    version: 4.0.5
   shvl:
     specifier: ^3.0.0
     version: 3.0.0
@@ -759,16 +752,6 @@ packages:
     resolution: {integrity: sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==}
     engines: {node: '>=4'}
     dev: true
-
-  /axios@0.17.1:
-    resolution: {integrity: sha512-mZzWRyJeJ0rtK7e1/6iYBUzmeXjzei+1h1IvbedyU0sB52++tU5AU6r6TLXpwNVR0ebXIpvTVW+9CpWNyc1n8w==}
-    deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
-    dependencies:
-      follow-redirects: 1.15.2
-      is-buffer: 1.1.6
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /axobject-query@3.1.1:
     resolution: {integrity: sha512-goKlv8DZrK9hUh975fnHzhNIO4jUnFCfv/dszV5VwUGDFjI6vQ2VwoyjYjYNEbBE8AH87TduWP5uyDR1D+Iteg==}
@@ -2350,10 +2333,6 @@ packages:
       has-tostringtag: 1.0.0
     dev: true
 
-  /is-buffer@1.1.6:
-    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
-    dev: false
-
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -2503,14 +2482,6 @@ packages:
 
   /isstream@0.1.2:
     resolution: {integrity: sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g==}
-    dev: false
-
-  /jdownloader-client@1.0.0:
-    resolution: {integrity: sha512-3aksD+UE6xDXGmRIWUUVnVcJQBvNwff2HfrkBIo/Ptxaru4dDO5WCb93vP+wNrTVKdw8QQZ9sE4Y3jBvrKVaXQ==}
-    dependencies:
-      axios: 0.17.1
-    transitivePeerDependencies:
-      - debug
     dev: false
 
   /jiti@1.18.2:
@@ -4303,3 +4274,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
