@@ -324,7 +324,14 @@
         "warn": "Warn",
         "total": "Total",
         "free": "Free",
-        "used": "Used"
+        "used": "Used",
+        "crit": "Crit",
+        "read": "Read",
+        "write": "Write",
+        "gpu": "GPU",
+        "mem": "Mem",
+        "swap": "Swap",
+        "_temp": "Temp"
     },
     "quicklaunch": {
         "bookmark": "Bookmark",
@@ -656,7 +663,19 @@
         "seriesCount": "Series",
         "totalFiles": "Files"
     },
-    "azurePipelines": {
+    "gamedig": {
+        "name": "Name",
+        "map": "Map",
+        "currentPlayers": "Current players",
+        "players": "Players",
+        "maxPlayers": "Max players",
+        "bots": "Bots",
+        "ping": "Ping",
+        "status": "Status",
+        "online": "Online",
+        "offline": "Offline"
+    },
+    "azuredevops": {
         "result": "Result",
         "status": "Status",
         "buildId": "Build ID",
@@ -664,6 +683,55 @@
         "notStarted": "Not Started",
         "failed": "Failed",
         "canceled": "Canceled",
-        "inProgress": "In Progress"
+        "inProgress": "In Progress",
+        "totalPrs": "Total PRs",
+        "myPrs": "My PRs",
+        "approved": "Approved"
+    },
+    "urbackup": {
+        "ok": "Ok",
+        "errored": "Errors",
+        "noRecent": "Out of Date",
+        "totalUsed": "Used Storage"
+    },
+    "openmediavault": {
+        "downloading": "Downloading",
+        "total": "Total",
+        "running": "Running",
+        "stopped": "Stopped",
+        "passed": "Passed",
+        "failed": "Failed"
+    },
+    "mealie": {
+        "recipes": "Recipes",
+        "users": "Users",
+        "categories": "Categories",
+        "tags": "Tags"
+    },
+    "atsumeru": {
+        "series": "Series",
+        "archives": "Archives",
+        "chapters": "Chapters",
+        "categories": "Categories"
+    },
+    "calibreweb": {
+        "books": "Books",
+        "authors": "Authors",
+        "categories": "Categories",
+        "series": "Series"
+    },
+    "uptimerobot": {
+        "status": "Status",
+        "uptime": "Uptime",
+        "lastDown": "Last Downtime",
+        "downDuration": "Downtime Duration",
+        "sitesUp": "Sites Up",
+        "sitesDown": "Sites Down",
+        "paused": "Paused",
+        "notyetchecked": "Not Yet Checked",
+        "up": "Up",
+        "seemsdown": "Seems Down",
+        "down": "Down",
+        "unknown": "Unknown"
     }
 }
