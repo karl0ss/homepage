@@ -8,24 +8,29 @@ export default function Component({ service }) {
   const { widget } = service;
 
   const { data: printerStats, error: printerStatsError } = useWidgetAPI(widget, "printer_stats");
-  const { data: jobStats, error: jobStatsError } = useWidgetAPI(widget, "job_stats");
+  // const { data: jobStats, error: jobStatsError } = useWidgetAPI(widget, "job_stats");
 
   if (printerStatsError) {
-    const msg = JSON.parse(Buffer.from(printerStatsError.resultData.data).toString());
+    let msg
+    try {
+      msg = JSON.parse(Buffer.from(printerStatsError.resultData.data).toString()).error;
+    } catch (error) {
+      msg = 'Octoprint Not Found'
+    }
     return (
       <Container service={service}>
-        <Block label="OFFLINE" value={msg.error} />
+        <Block label="Error" value={msg} />
       </Container>
     );
   }
 
-  if (jobStatsError) {
-    return <Container service={service} error={jobStatsError} />;
-  }
+  // if (jobStatsError) {
+  //   return <Container service={service} error={jobStatsError} />;
+  // }
 
-  const state = printerStats?.state?.text;
-  const tempTool = printerStats?.temperature?.tool0?.actual;
-  const tempBed = printerStats?.temperature?.bed?.actual;
+  const state = printerStats[1].Status;
+  const tempTool = printerStats[1].Temp.Tool;
+  const tempBed = printerStats[1].Temp.Bed;
 
   if (!printerStats || !state || !tempTool || !tempBed) {
     return (
