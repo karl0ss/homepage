@@ -248,7 +248,14 @@
         "warn": "Alerte",
         "total": "Total",
         "free": "Libre",
-        "used": "Utilisé"
+        "used": "Utilisé",
+        "crit": "Crit.",
+        "read": "Lect.",
+        "write": "Écrit.",
+        "gpu": "GPU",
+        "mem": "Mém.",
+        "swap": "Swap",
+        "_temp": "Temp"
     },
     "changedetectionio": {
         "totalObserved": "Total Observé",
@@ -656,14 +663,75 @@
         "seriesCount": "Séries",
         "totalFiles": "Fichiers"
     },
-    "azurePipelines": {
+    "gamedig": {
+        "name": "Nom",
+        "map": "Carte",
+        "currentPlayers": "Joueurs actuels",
+        "players": "Joueurs",
+        "maxPlayers": "Joueurs max",
+        "bots": "Bots",
+        "ping": "Ping",
+        "status": "Statut",
+        "online": "En ligne",
+        "offline": "Hors ligne"
+    },
+    "azuredevops": {
         "result": "Résultat",
         "status": "Statut",
         "buildId": "Build ID",
         "succeeded": "Réussi",
-        "notStarted": "Non démarré",
+        "notStarted": "Arrêté",
         "failed": "Échoué",
         "canceled": "Annulé",
-        "inProgress": "En cours"
+        "inProgress": "En cours",
+        "totalPrs": "PRs Total",
+        "myPrs": "Mes PRs",
+        "approved": "Approuvé"
+    },
+    "urbackup": {
+        "ok": "Ok",
+        "errored": "Erreur",
+        "noRecent": "Obsolète",
+        "totalUsed": "Esp. Utilisé"
+    },
+    "openmediavault": {
+        "downloading": "Téléchargement",
+        "total": "Total",
+        "running": "Démarré",
+        "stopped": "Arrêté",
+        "passed": "Réussi",
+        "failed": "Échoué"
+    },
+    "mealie": {
+        "recipes": "Recettes",
+        "users": "Utilisateurs",
+        "categories": "Catégories",
+        "tags": "Étiquettes"
+    },
+    "atsumeru": {
+        "series": "Séries",
+        "archives": "Archives",
+        "chapters": "Chapitres",
+        "categories": "Catégories"
+    },
+    "calibreweb": {
+        "series": "Séries",
+        "books": "Ebooks",
+        "authors": "Auteurs",
+        "categories": "Catégories"
+    },
+    "uptimerobot": {
+        "status": "Statut",
+        "uptime": "Disponibilité",
+        "lastDown": "Dernière interruption",
+        "downDuration": "Durée d'interruption",
+        "sitesUp": "Sites en ligne",
+        "sitesDown": "Sites hors ligne",
+        "paused": "En pause",
+        "notyetchecked": "Non vérifié",
+        "up": "En ligne",
+        "seemsdown": "Semble hors ligne",
+        "down": "Hors ligne",
+        "unknown": "Inconnu"
     }
 }

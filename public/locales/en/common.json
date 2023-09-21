@@ -365,13 +365,20 @@
         "load": "Load",
         "wait": "Please wait",
         "temp": "TEMP",
+        "_temp": "Temp",
         "warn": "Warn",
         "uptime": "UP",
         "total": "Total",
         "free": "Free",
         "used": "Used",
         "days": "d",
-        "hours": "h"
+        "hours": "h",
+        "crit": "Crit",
+        "read": "Read",
+        "write": "Write",
+        "gpu": "GPU",
+        "mem": "Mem",
+        "swap": "Swap"
     },
     "quicklaunch": {
         "bookmark": "Bookmark",
@@ -573,6 +580,12 @@
         "incident": "Incident",
         "m": "m"
     },
+    "atsumeru": {
+        "series": "Series",
+        "archives": "Archives",
+        "chapters": "Chapters",
+        "categories": "Categories"
+    },
     "komga": {
         "libraries": "Libraries",
         "series": "Series",
@@ -655,6 +668,12 @@
         "monitoring": "Monitoring",
         "updates": "Updates"
     },
+    "calibreweb": {
+        "books": "Books",
+        "authors": "Authors",
+        "categories": "Categories",
+        "series": "Series"
+    },
     "jdownloader": {
         "downloadCount": "Queue",
         "downloadBytesRemaining": "Remaining",
@@ -677,7 +696,7 @@
         "seriesCount": "Series",
         "totalFiles": "Files"
     },
-    "azurePipelines": {
+    "azuredevops": {
         "result": "Result",
         "status": "Status",
         "buildId": "Build ID",
@@ -685,6 +704,55 @@
         "notStarted": "Not Started",
         "failed": "Failed",
         "canceled": "Canceled",
-        "inProgress": "In Progress"
+        "inProgress": "In Progress",
+        "totalPrs": "Total PRs",
+        "myPrs": "My PRs",
+        "approved": "Approved"
+    },
+    "gamedig": {
+        "status": "Status",
+        "online": "Online",
+        "offline": "Offline",
+        "name": "Name",
+        "map": "Map",
+        "currentPlayers": "Current players",
+        "players": "Players",
+        "maxPlayers": "Max players",
+        "bots": "Bots",
+        "ping": "Ping"
+    },
+    "urbackup": {
+        "ok" : "Ok",
+        "errored": "Errors",
+        "noRecent": "Out of Date",
+        "totalUsed": "Used Storage"
+    },
+    "mealie": {
+        "recipes": "Recipes",
+        "users": "Users",
+        "categories": "Categories",
+        "tags": "Tags"
+    },
+    "openmediavault": {
+        "downloading": "Downloading",
+        "total": "Total",
+        "running": "Running",
+        "stopped": "Stopped",
+        "passed": "Passed",
+        "failed": "Failed"
+    },
+    "uptimerobot": {
+        "status": "Status",
+        "uptime": "Uptime",
+        "lastDown": "Last Downtime",
+        "downDuration": "Downtime Duration",
+        "sitesUp": "Sites Up",
+        "sitesDown": "Sites Down",
+        "paused": "Paused",
+        "notyetchecked": "Not Yet Checked",
+        "up": "Up",
+        "seemsdown": "Seems Down",
+        "down": "Down",
+        "unknown": "Unknown"
     }
 }

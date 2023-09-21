@@ -19,7 +19,7 @@ export default function Container({ error = false, children, service }) {
 
   let visibleChildren = childrenArray;
   let fields = service?.widget?.fields;
-  if (typeof service.widget.fields === 'string') fields = JSON.parse(service.widget.fields);
+  if (typeof fields === 'string') fields = JSON.parse(service.widget.fields);
   const type = service?.widget?.type;
   if (fields && type) {
     // if the field contains a "." then it most likely contains a common loc value
@@ -36,5 +36,5 @@ export default function Container({ error = false, children, service }) {
     }));
   }
 
-  return <div className="relative flex flex-row w-full">{visibleChildren}</div>;
+  return <div className="relative flex flex-row w-full service-container">{visibleChildren}</div>;
 }

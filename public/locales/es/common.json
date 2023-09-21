@@ -48,7 +48,7 @@
         "bitrate": "Tasa de bits",
         "no_active": "Sin transmisiones activas",
         "movies": "Películas",
-        "series": "Serie",
+        "series": "Series",
         "episodes": "Episodios",
         "songs": "Canciones"
     },
@@ -248,7 +248,14 @@
         "warn": "Advertir",
         "total": "Total",
         "free": "Libre",
-        "used": "Utilizado"
+        "used": "Utilizado",
+        "crit": "Crít.",
+        "read": "Leer",
+        "write": "Escribir",
+        "gpu": "GPU",
+        "mem": "Memoria",
+        "swap": "Intercambiar",
+        "_temp": "Temperatura"
     },
     "changedetectionio": {
         "totalObserved": "Total Observados",
@@ -455,7 +462,7 @@
     "medusa": {
         "wanted": "Querido",
         "queued": "A la espera",
-        "series": "Serie"
+        "series": "Series"
     },
     "octoprint": {
         "temp_bed": "Temperatura de la plataforma",
@@ -653,17 +660,78 @@
         "downloadTotalBytes": "Tamaño"
     },
     "kavita": {
-        "seriesCount": "Serie",
+        "seriesCount": "Series",
         "totalFiles": "Archivos"
     },
-    "azurePipelines": {
+    "gamedig": {
+        "name": "Nombre",
+        "map": "Mapa",
+        "currentPlayers": "Jugadores actuales",
+        "players": "Jugadores",
+        "maxPlayers": "Jugadores máximos",
+        "bots": "Bots",
+        "ping": "Ping",
+        "status": "Estado",
+        "online": "En línea",
+        "offline": "Sin conexión"
+    },
+    "azuredevops": {
         "result": "Resultado",
         "status": "Estado",
-        "buildId": "ID de la compilación",
-        "succeeded": "Con éxito",
-        "notStarted": "No iniciado",
+        "buildId": "Identificador de la construcción",
+        "succeeded": "Exitoso",
+        "notStarted": "Sin empezar",
         "failed": "Fallido",
         "canceled": "Cancelado",
-        "inProgress": "En proceso"
+        "inProgress": "En curso",
+        "totalPrs": "RP totales",
+        "myPrs": "Mis logros",
+        "approved": "Aprobados"
+    },
+    "urbackup": {
+        "ok": "De acuerdo",
+        "errored": "Errores",
+        "noRecent": "Caducado",
+        "totalUsed": "Almacenamiento usado"
+    },
+    "openmediavault": {
+        "running": "Ejecutando",
+        "downloading": "Descargando",
+        "total": "Total",
+        "stopped": "Detenido",
+        "passed": "Aprobado",
+        "failed": "Fallido"
+    },
+    "mealie": {
+        "recipes": "Recetas",
+        "users": "Usuarios",
+        "categories": "Categorías",
+        "tags": "Etiquetas"
+    },
+    "atsumeru": {
+        "series": "Series",
+        "archives": "Archivos",
+        "chapters": "Capítulos",
+        "categories": "Categorías"
+    },
+    "calibreweb": {
+        "books": "Libros",
+        "authors": "Autores",
+        "categories": "Categorías",
+        "series": "Series"
+    },
+    "uptimerobot": {
+        "status": "Estado",
+        "uptime": "Tiempo de actividad",
+        "lastDown": "Último periodo de inactividad",
+        "downDuration": "Tiempo de inactividad",
+        "sitesUp": "Páginas web con conexión",
+        "sitesDown": "Páginas web caídas",
+        "paused": "Pausado",
+        "notyetchecked": "Aún no verificado",
+        "up": "Arriba",
+        "seemsdown": "Parece caída",
+        "down": "Abajo",
+        "unknown": "Desconocido"
     }
 }

@@ -43,7 +43,7 @@ export default function Component({ service }) {
   const printingStateFalgs = ["Printing", "Paused", "Pausing", "Resuming"];
 
   if (printingStateFalgs.includes(state)) {
-    const { completion } = jobStats.progress;
+    const { completion } = jobStats?.progress ?? undefined;
 
     if (!jobStats || !completion) {
       return (

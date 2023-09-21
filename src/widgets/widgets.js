@@ -1,14 +1,17 @@
 import adguard from "./adguard/widget";
+import atsumeru from "./atsumeru/widget";
 import audiobookshelf from "./audiobookshelf/widget";
 import authentik from "./authentik/widget";
 import autobrr from "./autobrr/widget";
-import azurePipelines from "./azurePipelines/widget";
+import azuredevops from "./azuredevops/widget";
 import bazarr from "./bazarr/widget";
 import caddy from "./caddy/widget";
+import calibreweb from "./calibreweb/widget";
 import changedetectionio from "./changedetectionio/widget";
 import channelsdvrserver from "./channelsdvrserver/widget";
 import cloudflared from "./cloudflared/widget";
 import coinmarketcap from "./coinmarketcap/widget";
+import customapi from "./customapi/widget";
 import deluge from "./deluge/widget";
 import diskstation from "./diskstation/widget";
 import downloadstation from "./downloadstation/widget";
@@ -17,7 +20,9 @@ import evcc from "./evcc/widget";
 import fileflows from "./fileflows/widget";
 import flood from "./flood/widget";
 import freshrss from "./freshrss/widget";
+import gamedig from "./gamedig/widget";
 import ghostfolio from "./ghostfolio/widget";
+import glances from "./glances/widget";
 import gluetun from "./gluetun/widget";
 import gotify from "./gotify/widget";
 import grafana from "./grafana/widget";
@@ -34,10 +39,12 @@ import komga from "./komga/widget";
 import kopia from "./kopia/widget";
 import lidarr from "./lidarr/widget";
 import mastodon from "./mastodon/widget";
+import mealie from "./mealie/widget";
 import medusa from "./medusa/widget";
 import minecraft from "./minecraft/widget";
 import miniflux from "./miniflux/widget";
 import mikrotik from "./mikrotik/widget";
+import mjpeg from "./mjpeg/widget";
 import moonraker from "./moonraker/widget";
 import mylar from "./mylar/widget";
 import navidrome from "./navidrome/widget";
@@ -51,6 +58,7 @@ import omada from "./omada/widget";
 import ombi from "./ombi/widget";
 import opnsense from "./opnsense/widget";
 import overseerr from "./overseerr/widget";
+import openmediavault from "./openmediavault/widget";
 import paperlessngx from "./paperlessngx/widget";
 import pfsense from "./pfsense/widget";
 import photoprism from "./photoprism/widget";
@@ -84,24 +92,29 @@ import truenas from "./truenas/widget";
 import unifi from "./unifi/widget";
 import unmanic from "./unmanic/widget";
 import uptimekuma from "./uptimekuma/widget";
+import uptimerobot from "./uptimerobot/widget";
 import watchtower from "./watchtower/widget";
 import whatsupdocker from "./whatsupdocker/widget";
 import wgeasy from "./wgeasy/widget";
 import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
+import urbackup from "./urbackup/widget";
 
 const widgets = {
   adguard,
+  atsumeru,
   audiobookshelf,
   authentik,
   autobrr,
-  azurePipelines,
+  azuredevops,
   bazarr,
   caddy,
+  calibreweb,
   changedetectionio,
   channelsdvrserver,
   cloudflared,
   coinmarketcap,
+  customapi,
   deluge,
   diskstation,
   downloadstation,
@@ -110,7 +123,9 @@ const widgets = {
   fileflows,
   flood,
   freshrss,
+  gamedig,
   ghostfolio,
+  glances,
   gluetun,
   gotify,
   grafana,
@@ -129,10 +144,12 @@ const widgets = {
   kopia,
   lidarr,
   mastodon,
+  mealie,
   medusa,
   minecraft,
   miniflux,
   mikrotik,
+  mjpeg,
   moonraker,
   mylar,
   navidrome,
@@ -146,6 +163,7 @@ const widgets = {
   ombi,
   opnsense,
   overseerr,
+  openmediavault,
   paperlessngx,
   pfsense,
   photoprism,
@@ -180,6 +198,8 @@ const widgets = {
   unifi_console: unifi,
   unmanic,
   uptimekuma,
+  uptimerobot,
+  urbackup,
   watchtower,
   whatsupdocker,
   wgeasy,

@@ -372,7 +372,14 @@
         "warn": "Увага",
         "total": "Всього",
         "free": "Вільний",
-        "used": "Використовується"
+        "used": "Використовується",
+        "crit": "Crit",
+        "read": "Прочитати",
+        "write": "Написати",
+        "gpu": "GPU",
+        "mem": "Пам'ять",
+        "swap": "Обмін",
+        "_temp": "Temp"
     },
     "quicklaunch": {
         "bookmark": "Закладка",
@@ -656,14 +663,75 @@
         "seriesCount": "Серій",
         "totalFiles": "Файлів"
     },
-    "azurePipelines": {
-        "failed": "Невдача",
+    "gamedig": {
+        "name": "Назва",
+        "map": "Мапа",
+        "currentPlayers": "Поточні гравці",
+        "players": "Гравці",
+        "maxPlayers": "Максимум гравців",
+        "bots": "Ботів",
+        "ping": "Пінг",
+        "status": "Статус",
+        "online": "В мережі",
+        "offline": "Не в мережі"
+    },
+    "azuredevops": {
         "result": "Результат",
-        "status": "Стан",
+        "status": "Статус",
         "buildId": "ID збірки",
         "succeeded": "Успішно",
         "notStarted": "Не розпочато",
+        "failed": "Невдача",
         "canceled": "Скасовано",
-        "inProgress": "В процесі"
+        "inProgress": "В процесі",
+        "totalPrs": "Всього PR",
+        "myPrs": "Мій PR",
+        "approved": "Затверджено"
+    },
+    "urbackup": {
+        "ok": "Добре",
+        "errored": "Помилки",
+        "noRecent": "Застарілий",
+        "totalUsed": "Використовувана пам'ять"
+    },
+    "openmediavault": {
+        "downloading": "Downloading",
+        "total": "Total",
+        "running": "Running",
+        "stopped": "Stopped",
+        "passed": "Passed",
+        "failed": "Failed"
+    },
+    "mealie": {
+        "recipes": "Recipes",
+        "users": "Users",
+        "categories": "Categories",
+        "tags": "Tags"
+    },
+    "atsumeru": {
+        "series": "Серії",
+        "archives": "Архіви",
+        "chapters": "Глави",
+        "categories": "Категорії"
+    },
+    "calibreweb": {
+        "books": "Books",
+        "authors": "Authors",
+        "categories": "Categories",
+        "series": "Series"
+    },
+    "uptimerobot": {
+        "status": "Status",
+        "uptime": "Uptime",
+        "lastDown": "Last Downtime",
+        "downDuration": "Downtime Duration",
+        "sitesUp": "Sites Up",
+        "sitesDown": "Sites Down",
+        "paused": "Paused",
+        "notyetchecked": "Not Yet Checked",
+        "up": "Up",
+        "seemsdown": "Seems Down",
+        "down": "Down",
+        "unknown": "Unknown"
     }
 }
