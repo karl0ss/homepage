@@ -10,6 +10,14 @@ export default function Component({ service }) {
   const { data: printerStats, error: printerStatsError } = useWidgetAPI(widget, "printer_stats");
   // const { data: jobStats, error: jobStatsError } = useWidgetAPI(widget, "job_stats");
 
+  if (printerStatsError && jobStats) {
+    return (
+      <Container service={service}>
+        <Block label="octoprint.printer_state" value={jobStats.state} />
+      </Container>
+    );
+  }
+
   if (printerStatsError) {
     let msg
     try {
@@ -43,7 +51,7 @@ export default function Component({ service }) {
   const printingStateFalgs = ["Printing", "Paused", "Pausing", "Resuming"];
 
   if (printingStateFalgs.includes(state)) {
-    const { completion } = jobStats?.progress ?? undefined;
+    const completion = jobStats?.progress?.completion;
 
     if (!jobStats || !completion) {
       return (

@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import { useCallback } from 'react';
+import { useCallback } from "react";
 
 import QueueEntry from "../../components/widgets/queue/queueEntry";
 
@@ -8,16 +8,16 @@ import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 function getProgress(sizeLeft, size) {
-  return sizeLeft === 0 ? 100 : (1 - sizeLeft / size) * 100
+  return sizeLeft === 0 ? 100 : (1 - sizeLeft / size) * 100;
 }
 
 function getTitle(queueEntry, seriesData) {
-  let title = ''
+  let title = "";
   const seriesTitle = seriesData.find((entry) => entry.id === queueEntry.seriesId)?.title;
   if (seriesTitle) title += `${seriesTitle}: `;
   const { episodeTitle } = queueEntry;
   if (episodeTitle) title += episodeTitle;
-  if (title === '') return null;
+  if (title === "") return null;
   return title;
 }
 
@@ -65,17 +65,16 @@ export default function Component({ service }) {
         <Block label="sonarr.queued" value={t("common.number", { value: queuedData.totalRecords })} />
         <Block label="sonarr.series" value={t("common.number", { value: seriesData.length })} />
       </Container>
-      {enableQueue && 
+      {enableQueue &&
         queueDetailsData.map((queueEntry) => (
           <QueueEntry
             progress={getProgress(queueEntry.sizeLeft, queueEntry.size)}
             timeLeft={queueEntry.timeLeft}
             title={getTitle(queueEntry, seriesData) ?? t("sonarr.unknown")}
             activity={formatDownloadState(queueEntry.trackedDownloadState)}
-            key={`${queueEntry.seriesId}-${queueEntry.sizeLeft}`}
+            key={`${queueEntry.seriesId}-${queueEntry.episodeId}`}
           />
-        ))
-      }
+        ))}
     </>
   );
 }
