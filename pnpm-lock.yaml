@@ -76,9 +76,6 @@ dependencies:
   salted-md5:
     specifier: ^4.0.5
     version: 4.0.5
-  shvl:
-    specifier: ^3.0.0
-    version: 3.0.0
   swr:
     specifier: ^1.3.0
     version: 1.3.0(react@18.2.0)
