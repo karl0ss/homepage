@@ -32,7 +32,7 @@ export default function Component({ service }) {
           <Block label="titlecardmaker.monitoredSeries" value={statistics[2].value} />
           <Block label="titlecardmaker.unmonitoredSeries" value={statistics[3].value} />
           <Block label="titlecardmaker.totalEpisodes" value={statistics[4].value} />
-          <Block label="titlecardmaker.cardSize" value={t("common.bytes", { value: statistics[5].value })} />
+          <Block label="titlecardmaker.cardSize" value={t("common.bbytes", { value: statistics[5].value })} />
           <Block label="titlecardmaker.totalFonts" value={statistics[6].value} />
           <Block label="titlecardmaker.totalTemplates" value={statistics[7].value} />
           <Block label="titlecardmaker.totalSyncs" value={statistics[8].value} />
@@ -45,7 +45,7 @@ export default function Component({ service }) {
           <Block label="titlecardmaker.totalEpisodes" value={statistics[4].value} />
           <Block label="titlecardmaker.totalCards" value={statistics[0].value} />
           <Block label="titlecardmaker.loadedCards" value={statistics[9].value} />
-          <Block label="titlecardmaker.cardSize" value={t("common.bytes", { value: statistics[5].value })} />
+          <Block label="titlecardmaker.cardSize" value={t("common.bbytes", { value: statistics[5].value })} />
         </Container>
     );
   }
