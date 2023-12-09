@@ -96,6 +96,7 @@ const components = {
   tailscale: dynamic(() => import("./tailscale/component")),
   tautulli: dynamic(() => import("./tautulli/component")),
   tdarr: dynamic(() => import("./tdarr/component")),
+  titlecardmaker: dynamic(() => import("./titlecardmaker/component")),
   traefik: dynamic(() => import("./traefik/component")),
   transmission: dynamic(() => import("./transmission/component")),
   tubearchivist: dynamic(() => import("./tubearchivist/component")),

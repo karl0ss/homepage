@@ -797,5 +797,17 @@
         "digitalRelease": "Digital release",
         "noEventsToday": "No events for today!",
         "noEventsFound": "No events found"
+    },
+    "titlecardmaker": {
+        "totalCards": "Total Cards",
+        "totalSeries": "Total Series",
+        "monitoredSeries": "Monitored Series",
+        "unmonitoredSeries": "Unmonitored Series",
+        "totalEpisodes": "Total Episodes",
+        "cardSize": "File Size Of Cards",
+        "totalFonts": "Total Fonts",
+        "totalTemplates": "Total Templates",
+        "totalSyncs": "Total Syncs",
+        "loadedCards": "Loaded Cards"      
     }
 }
