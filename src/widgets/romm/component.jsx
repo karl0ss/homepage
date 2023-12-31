@@ -1,31 +1,27 @@
-import { useTranslation } from "next-i18next";
-
 import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
-  const { t } = useTranslation();
-
   const { widget } = service;
 
-  const { data: statistics, error: statisticsStatsError } = useWidgetAPI(widget, "statistics");
+  const { data: response, error: responseError } = useWidgetAPI(widget, "statistics");
 
-  if (statisticsStatsError) {
+  if (responseError) {
     return (
       <Container service={service}>
-        <Block label="Error" value={statisticsStatsError.message} />
+        <Block label="Error" value={responseError.message} />
       </Container>
     );
   }
 
-  if (statisticsStatsError) {
-    return <Container service={service} error={statisticsStatsError} />;
+  if (responseError) {
+    return <Container service={service} error={responseError} />;
   }
 
-  if (statistics) {
-    const platforms = statistics.filter(x => x.n_roms!=0).length
-    const totalRoms = statistics.reduce((total, stat) => total + stat.n_roms, 0);
+  if (response) {
+    const platforms = response.filter(x => x.n_roms!==0).length
+    const totalRoms = response.reduce((total, stat) => total + stat.n_roms, 0);
     return (
         <Container service={service}>
           <Block label="romm.platforms" value={platforms} />
