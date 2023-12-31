@@ -76,6 +76,9 @@ dependencies:
   rrule:
     specifier: ^2.8.1
     version: 2.8.1
+  salted-md5:
+    specifier: ^4.0.5
+    version: 4.0.5
   swr:
     specifier: ^1.3.0
     version: 1.3.0(react@18.2.0)
