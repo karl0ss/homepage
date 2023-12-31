@@ -80,6 +80,7 @@ import qbittorrent from "./qbittorrent/widget";
 import qnap from "./qnap/widget";
 import radarr from "./radarr/widget";
 import readarr from "./readarr/widget";
+import romm from "./romm/widget";
 import rutorrent from "./rutorrent/widget";
 import sabnzbd from "./sabnzbd/widget";
 import scrutiny from "./scrutiny/widget";
@@ -190,6 +191,7 @@ const widgets = {
   qnap,
   radarr,
   readarr,
+  romm,
   rutorrent,
   sabnzbd,
   scrutiny,

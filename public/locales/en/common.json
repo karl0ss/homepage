@@ -818,5 +818,9 @@
         "totalTemplates": "Total Templates",
         "totalSyncs": "Total Syncs",
         "loadedCards": "Loaded Cards"      
+    },
+    "romm": {
+        "platforms": "Platforms",
+        "totalRoms": "Total ROMs"
     }
 }
