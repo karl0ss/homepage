@@ -11,7 +11,13 @@
         "percent": "{{value, percent}}",
         "number": "{{value, number}}",
         "ms": "{{value, number}}",
-        "date": "{{value, date}}"
+        "date": "{{value, date}}",
+        "uptime": "{{value, uptime}}",
+        "months": "mo",
+        "days": "d",
+        "hours": "h",
+        "minutes": "m",
+        "seconds": "s"
     },
     "widget": {
         "missing_type": "Falta el tipo de widget: {{type}}",
@@ -40,15 +46,11 @@
         "load": "Carga",
         "temp": "TEMP",
         "max": "Máx.",
-        "uptime": "ARRIBA",
-        "months": "Meses",
-        "days": "Días",
-        "hours": "Horas",
-        "minutes": "Minutos"
+        "uptime": "ARRIBA"
     },
     "unifi": {
         "users": "Usuarios",
-        "uptime": "Tiempo de actividad",
+        "uptime": "Tiempo de la actividad",
         "days": "Días",
         "wan": "WAN",
         "lan": "LAN",
@@ -121,6 +123,24 @@
     "freshrss": {
         "subscriptions": "Suscripciones",
         "unread": "Sin leer"
+    },
+    "fritzbox": {
+        "connectionStatus": "Estado",
+        "connectionStatusUnconfigured": "Sin configurar",
+        "connectionStatusConnecting": "Conectando",
+        "connectionStatusAuthenticating": "Autenticando",
+        "connectionStatusPendingDisconnect": "Pending Disconnect",
+        "connectionStatusDisconnecting": "Desconectando",
+        "connectionStatusDisconnected": "Desconectado",
+        "connectionStatusConnected": "Conectado",
+        "uptime": "Tiempo de la actividad",
+        "maxDown": "Max. Down",
+        "maxUp": "Max. Up",
+        "down": "Abajo",
+        "up": "Arriba",
+        "received": "Recibido",
+        "sent": "Enviado",
+        "externalIPAddress": "IP pública"
     },
     "caddy": {
         "upstreams": "Upstream (desarrollo de software)",
@@ -383,8 +403,8 @@
         "total": "Total",
         "free": "Libre",
         "used": "Usado",
-        "days": "Días",
-        "hours": "Horas",
+        "days": "d",
+        "hours": "h",
         "crit": "Crít.",
         "read": "Leer",
         "write": "Escribir",
@@ -499,8 +519,7 @@
     "truenas": {
         "load": "Carga del sistema",
         "uptime": "Tiempo de la actividad",
-        "alerts": "Alertas",
-        "time": "{{value, number(style: unit; unitDisplay: long;)}}"
+        "alerts": "Alertas"
     },
     "pyload": {
         "speed": "Velocidad",
@@ -525,6 +544,14 @@
     "paperlessngx": {
         "inbox": "Bandeja de entrada",
         "total": "Total"
+    },
+    "peanut": {
+        "battery_charge": "Battery Charge",
+        "ups_load": "UPS Load",
+        "ups_status": "UPS Status",
+        "online": "En línea",
+        "on_battery": "On Battery",
+        "low_battery": "Low Battery"
     },
     "nextdns": {
         "wait": "Espere por favor",
@@ -596,7 +623,7 @@
         "down": "Páginas web inactivas",
         "uptime": "Tiempo de la actividad",
         "incident": "Incidencia",
-        "m": "Minutos"
+        "m": "m"
     },
     "atsumeru": {
         "series": "Serie",
@@ -765,6 +792,7 @@
         "inCinemas": "En cine",
         "physicalRelease": "Lanzamiento en físico",
         "digitalRelease": "Lanzamiento en digital",
-        "noEventsToday": "Sin eventos para hoy"
+        "noEventsToday": "Sin eventos para hoy",
+        "noEventsFound": "No events found"
     }
 }
