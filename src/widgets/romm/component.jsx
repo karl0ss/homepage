@@ -20,8 +20,8 @@ export default function Component({ service }) {
   }
 
   if (response) {
-    const platforms = response.filter(x => x.n_roms!==0).length
-    const totalRoms = response.reduce((total, stat) => total + stat.n_roms, 0);
+    const platforms = response.filter(x => x.rom_count!==0).length
+    const totalRoms = response.reduce((total, stat) => total + stat.rom_count, 0);
     return (
         <Container service={service}>
           <Block label="romm.platforms" value={platforms} />
