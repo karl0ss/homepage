@@ -38,7 +38,7 @@ export async function servicesFromConfig() {
   // add default weight to services based on their position in the configuration
   servicesArray.forEach((group, groupIndex) => {
     group.services.forEach((service, serviceIndex) => {
-      if (!service.weight) {
+      if (service.weight === undefined) {
         servicesArray[groupIndex].services[serviceIndex].weight = (serviceIndex + 1) * 100;
       }
     });
@@ -101,6 +101,16 @@ export async function servicesFromDocker() {
               shvl.set(constructedService, value, substituteEnvironmentVars(containerLabels[label]));
             }
           });
+
+          if (!constructedService.name || !constructedService.group) {
+            logger.error(
+              `Error constructing service using homepage labels for container '${containerName.replace(
+                /^\//,
+                "",
+              )}'. Ensure required labels are present.`,
+            );
+            return null;
+          }
 
           return constructedService;
         });
@@ -387,6 +397,9 @@ export function cleanServiceGroups(groups) {
           // glances, customapi, iframe
           refreshInterval,
 
+          // healthchecks
+          uuid,
+
           // iframe
           allowFullscreen,
           allowPolicy,
@@ -525,6 +538,9 @@ export function cleanServiceGroups(groups) {
           if (maxEvents) cleanedService.widget.maxEvents = maxEvents;
           if (previousDays) cleanedService.widget.previousDays = previousDays;
           if (showTime) cleanedService.widget.showTime = showTime;
+        }
+        if (type === "healthchecks") {
+          if (uuid !== undefined) cleanedService.widget.uuid = uuid;
         }
       }
 

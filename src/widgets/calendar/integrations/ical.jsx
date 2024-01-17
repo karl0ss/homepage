@@ -23,8 +23,9 @@ export default function Integration({ config, params, setEvents, hideErrors }) {
       }
     }
 
-    const startDate = DateTime.fromISO(params.start);
-    const endDate = DateTime.fromISO(params.end);
+    const zone = config?.timezone || null;
+    const startDate = DateTime.fromISO(params.start, { zone });
+    const endDate = DateTime.fromISO(params.end, { zone });
 
     if (icalError || !parsedIcal || !startDate.isValid || !endDate.isValid) {
       return;
@@ -43,20 +44,24 @@ export default function Integration({ config, params, setEvents, hideErrors }) {
         const duration = event.dtend.value - event.dtstart.value;
         const days = duration / (1000 * 60 * 60 * 24);
 
+        const now = DateTime.now().setZone(zone);
+        const eventDate = DateTime.fromJSDate(date, { zone });
+
         for (let j = 0; j < days; j += 1) {
           eventsToAdd[`${event?.uid?.value}${i}${j}${type}`] = {
             title,
-            date: DateTime.fromJSDate(date).plus({ days: j }),
+            date: eventDate.plus({ days: j }),
             color: config?.color ?? "zinc",
-            isCompleted: DateTime.fromJSDate(date) < DateTime.now(),
+            isCompleted: eventDate < now,
             additional: event.location?.value,
             type: "ical",
           };
         }
       };
 
-      if (event?.recurrenceRule?.options) {
-        const rule = new RRule(event.recurrenceRule.options);
+      const recurrenceOptions = event?.recurrenceRule?.origOptions;
+      if (recurrenceOptions && Object.keys(recurrenceOptions).length !== 0) {
+        const rule = new RRule(recurrenceOptions);
         const recurringEvents = rule.between(startDate.toJSDate(), endDate.toJSDate());
 
         recurringEvents.forEach((date, i) => eventToAdd(date, i, "recurring"));
