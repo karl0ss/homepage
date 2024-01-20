@@ -50,6 +50,7 @@ import mjpeg from "./mjpeg/widget";
 import moonraker from "./moonraker/widget";
 import mylar from "./mylar/widget";
 import navidrome from "./navidrome/widget";
+import netdata from "./netdata/widget";
 import nextcloud from "./nextcloud/widget";
 import nextdns from "./nextdns/widget";
 import nextpvr from "./nextpvr/widget";
@@ -105,6 +106,7 @@ import wgeasy from "./wgeasy/widget";
 import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
 import urbackup from "./urbackup/widget";
+import romm from "./romm/widget";
 
 const widgets = {
   adguard,
@@ -161,6 +163,7 @@ const widgets = {
   moonraker,
   mylar,
   navidrome,
+  netdata,
   nextcloud,
   nextdns,
   nextpvr,
