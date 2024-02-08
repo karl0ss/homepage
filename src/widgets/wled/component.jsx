@@ -20,7 +20,7 @@ export default function Component({ service }) {
     );
   }
   let state
-  if (wledData.state.on === 1){
+  if (wledData.state.on === true){
     state = "On";
   } else {
     state = "Off";
