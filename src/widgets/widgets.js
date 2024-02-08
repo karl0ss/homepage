@@ -23,6 +23,7 @@ import flood from "./flood/widget";
 import freshrss from "./freshrss/widget";
 import fritzbox from "./fritzbox/widget";
 import gamedig from "./gamedig/widget";
+import gatus from "./gatus/widget";
 import ghostfolio from "./ghostfolio/widget";
 import glances from "./glances/widget";
 import gluetun from "./gluetun/widget";
@@ -63,6 +64,7 @@ import opendtu from "./opendtu/widget";
 import opnsense from "./opnsense/widget";
 import overseerr from "./overseerr/widget";
 import openmediavault from "./openmediavault/widget";
+import openwrt from "./openwrt/widget";
 import paperlessngx from "./paperlessngx/widget";
 import peanut from "./peanut/widget";
 import pfsense from "./pfsense/widget";
@@ -132,6 +134,7 @@ const widgets = {
   freshrss,
   fritzbox,
   gamedig,
+  gatus,
   ghostfolio,
   glances,
   gluetun,
@@ -175,6 +178,7 @@ const widgets = {
   opnsense,
   overseerr,
   openmediavault,
+  openwrt,
   paperlessngx,
   peanut,
   pfsense,
