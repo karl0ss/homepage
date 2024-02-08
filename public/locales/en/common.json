@@ -770,7 +770,7 @@
         "ping": "Ping"
     },
     "urbackup": {
-        "ok" : "Ok",
+        "ok": "Ok",
         "errored": "Errors",
         "noRecent": "Out of Date",
         "totalUsed": "Used Storage"
@@ -823,7 +823,11 @@
         "totalRoms": "Total ROMs"
     },
     "netdata": {
-      "warnings": "Warnings",
-      "criticals": "Criticals"
+        "warnings": "Warnings",
+        "criticals": "Criticals"
+    },
+    "wled": {
+        "deviceName": "Device Name",
+        "deviceState": "Device State"
     }
 }

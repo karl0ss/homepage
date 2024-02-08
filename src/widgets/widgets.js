@@ -104,6 +104,7 @@ import whatsupdocker from "./whatsupdocker/widget";
 import xteve from "./xteve/widget";
 import urbackup from "./urbackup/widget";
 import romm from "./romm/widget";
+import wled from "./wled/widget";
 
 const widgets = {
   adguard,
@@ -214,6 +215,7 @@ const widgets = {
   watchtower,
   whatsupdocker,
   xteve,
+  wled
 };
 
 export default widgets;
