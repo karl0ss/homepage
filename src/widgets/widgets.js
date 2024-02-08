@@ -108,6 +108,8 @@ import wgeasy from "./wgeasy/widget";
 import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
 import urbackup from "./urbackup/widget";
+import romm from "./romm/widget";
+import wled from "./wled/widget";
 
 const widgets = {
   adguard,
@@ -222,6 +224,7 @@ const widgets = {
   whatsupdocker,
   wgeasy,
   xteve,
+  wled
 };
 
 export default widgets;

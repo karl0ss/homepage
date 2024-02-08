@@ -114,6 +114,7 @@ const components = {
   watchtower: dynamic(() => import("./watchtower/component")),
   whatsupdocker: dynamic(() => import("./whatsupdocker/component")),
   wgeasy: dynamic(() => import("./wgeasy/component")),
+  wled: dynamic(() => import("./wled/component")),
   xteve: dynamic(() => import("./xteve/component")),
 };
 
