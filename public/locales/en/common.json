@@ -864,5 +864,10 @@
         "notifications": "Notifications",
         "issues": "Issues",
         "pulls": "Pull Requests"
+    },
+    "blueiris": {
+        "serverName": "Server Name",
+        "numberOfActiveCams": "Active Cameras",
+        "numberOfAlerts": "Total Alerts"
     }
 }

@@ -111,6 +111,7 @@ import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
 import urbackup from "./urbackup/widget";
 import wled from "./wled/widget";
+import blueiris from "./blueiris/widget";
 
 const widgets = {
   adguard,
@@ -120,6 +121,7 @@ const widgets = {
   autobrr,
   azuredevops,
   bazarr,
+  blueiris,
   caddy,
   calibreweb,
   changedetectionio,
