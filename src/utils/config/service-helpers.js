@@ -378,6 +378,7 @@ export function cleanServiceGroups(groups) {
 
           // customapi
           mappings,
+          display,
 
           // diskstation
           volume,
@@ -394,6 +395,7 @@ export function cleanServiceGroups(groups) {
           chart,
           metric,
           pointsLimit,
+          diskUnits,
 
           // glances, customapi, iframe
           refreshInterval,
@@ -440,6 +442,9 @@ export function cleanServiceGroups(groups) {
 
           // sonarr, radarr
           enableQueue,
+
+          // truenas
+          enablePools,
 
           // unifi
           site,
@@ -510,6 +515,9 @@ export function cleanServiceGroups(groups) {
         if (["sonarr", "radarr"].includes(type)) {
           if (enableQueue !== undefined) cleanedService.widget.enableQueue = JSON.parse(enableQueue);
         }
+        if (type === "truenas") {
+          if (enablePools !== undefined) cleanedService.widget.enablePools = JSON.parse(enablePools);
+        }
         if (["diskstation", "qnap"].includes(type)) {
           if (volume) cleanedService.widget.volume = volume;
         }
@@ -526,6 +534,7 @@ export function cleanServiceGroups(groups) {
           }
           if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
           if (pointsLimit) cleanedService.widget.pointsLimit = pointsLimit;
+          if (diskUnits) cleanedService.widget.diskUnits = diskUnits;
         }
         if (type === "mjpeg") {
           if (stream) cleanedService.widget.stream = stream;
@@ -539,6 +548,7 @@ export function cleanServiceGroups(groups) {
         }
         if (type === "customapi") {
           if (mappings) cleanedService.widget.mappings = mappings;
+          if (display) cleanedService.widget.display = display;
           if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
         }
         if (type === "calendar") {

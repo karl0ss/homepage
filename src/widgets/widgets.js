@@ -25,6 +25,7 @@ import fritzbox from "./fritzbox/widget";
 import gamedig from "./gamedig/widget";
 import gatus from "./gatus/widget";
 import ghostfolio from "./ghostfolio/widget";
+import gitea from "./gitea/widget";
 import glances from "./glances/widget";
 import gluetun from "./gluetun/widget";
 import gotify from "./gotify/widget";
@@ -72,6 +73,7 @@ import photoprism from "./photoprism/widget";
 import proxmoxbackupserver from "./proxmoxbackupserver/widget";
 import pialert from "./pialert/widget";
 import pihole from "./pihole/widget";
+import plantit from "./plantit/widget";
 import plex from "./plex/widget";
 import portainer from "./portainer/widget";
 import prometheus from "./prometheus/widget";
@@ -137,6 +139,7 @@ const widgets = {
   gamedig,
   gatus,
   ghostfolio,
+  gitea,
   glances,
   gluetun,
   gotify,
@@ -187,6 +190,7 @@ const widgets = {
   proxmoxbackupserver,
   pialert,
   pihole,
+  plantit,
   plex,
   portainer,
   prometheus,
