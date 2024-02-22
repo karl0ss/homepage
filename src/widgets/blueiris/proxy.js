@@ -8,7 +8,6 @@ const saltedMd5 = require('salted-md5');
 const proxyName = "blueirisProxyHandler";
 
 const logger = createLogger(proxyName);
-let globalUserData = null;
 
 const executeCMD = async (widgetUrl, body) => {
     const url = `${widgetUrl}/json`
@@ -73,10 +72,7 @@ const numberOfAlerts = async (widget, session) => {
 
 export default async function blueirisProxyHandler(req, res) {
     const widget = await getWidget(req);
-
-    if (!globalUserData) {
-        globalUserData = await userLogin(widget);
-    }
+    const globalUserData = await userLogin(widget);
     const activeCams = await activeCamCount(widget, globalUserData.session);
     const alerts = await numberOfAlerts(widget, globalUserData.session);
     const data = {
