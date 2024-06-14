@@ -113,7 +113,6 @@ import uptimerobot from "./uptimerobot/widget";
 import watchtower from "./watchtower/widget";
 import wgeasy from "./wgeasy/widget";
 import whatsupdocker from "./whatsupdocker/widget";
-import wgeasy from "./wgeasy/widget";
 import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
 import urbackup from "./urbackup/widget";
@@ -242,7 +241,6 @@ const widgets = {
   watchtower,
   wgeasy,
   whatsupdocker,
-  wgeasy,
   xteve,
   wled
 };
