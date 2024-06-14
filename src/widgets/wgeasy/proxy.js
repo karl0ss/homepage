@@ -1,117 +1,77 @@
-/* eslint-disable no-underscore-dangle */
+import cache from "memory-cache";
+
+import getServiceWidget from "utils/config/service-helpers";
 import { formatApiCall } from "utils/proxy/api-helpers";
 import { httpProxy } from "utils/proxy/http";
-import getServiceWidget from "utils/config/service-helpers";
-import createLogger from "utils/logger";
 import widgets from "widgets/widgets";
-
+import createLogger from "utils/logger";
 
 const proxyName = "wgeasyProxyHandler";
-
 const logger = createLogger(proxyName);
-let globalSid = null;
+const sessionSIDCacheKey = `${proxyName}__sessionSID`;
 
-async function getWidget(req) {
-    const { group, service } = req.query;
-    if (!group || !service) {
-        logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
-        return null;
+async function login(widget, service) {
+  const url = formatApiCall(widgets[widget.type].api, { ...widget, endpoint: "session" });
+  const [, , , responseHeaders] = await httpProxy(url, {
+    method: "POST",
+    body: JSON.stringify({ password: widget.password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  try {
+    let connectSidCookie = responseHeaders["set-cookie"];
+    if (!connectSidCookie) {
+      const sid = cache.get(`${sessionSIDCacheKey}.${service}`);
+      if (sid) {
+        return sid;
+      }
     }
+    connectSidCookie = connectSidCookie
+      .find((cookie) => cookie.startsWith("connect.sid="))
+      .split(";")[0]
+      .replace("connect.sid=", "");
+    cache.put(`${sessionSIDCacheKey}.${service}`, connectSidCookie);
+    return connectSidCookie;
+  } catch (e) {
+    logger.error(`Error logging into wg-easy, error: ${e}`);
+    cache.del(`${sessionSIDCacheKey}.${service}`);
+    return null;
+  }
+}
+
+export default async function wgeasyProxyHandler(req, res) {
+  const { group, service } = req.query;
+
+  if (group && service) {
     const widget = await getServiceWidget(group, service);
-    if (!widget) {
-        logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);
-        return null;
+
+    if (!widgets?.[widget.type]?.api) {
+      return res.status(403).json({ error: "Service does not support API calls" });
     }
 
-    return widget;
-}
-
-
-async function loginToWGEasy(endpoint, widget) {
-    const api = widgets?.[widget.type]?.api;
-    if (!api) {
-        return [403, null];
-    }
-    // Create new session on WgEasy
-    const url = new URL(formatApiCall(api, { endpoint, ...widget }));
-
-    const [status, data, , responseHeaders] = await httpProxy(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
+    if (widget) {
+      let sid = cache.get(`${sessionSIDCacheKey}.${service}`);
+      if (!sid) {
+        sid = await login(widget, service);
+        if (!sid) {
+          return res.status(500).json({ error: "Failed to authenticate with Wg-Easy" });
+        }
+      }
+      const [, , data] = await httpProxy(
+        formatApiCall(widgets[widget.type].api, { ...widget, endpoint: "wireguard/client" }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Cookie: `connect.sid=${sid}`,
+          },
         },
-        body: JSON.stringify({
-            password: widget.password,
-        })
-    });
+      );
 
-    if (status !== 204) {
-        logger.error("HTTP %d communicating with NextPVR. Data: %s", status, data.toString());
-        return [status, data, responseHeaders];
+      return res.json(JSON.parse(data));
     }
-    try {
-        [ globalSid ] = responseHeaders["set-cookie"]
-    } catch (e) {
-        logger.error("Error decoding NextPVR API data. Data: %s", data.toString());
-        return [status, null];
-    }
-    logger.info('gettingSID')
-    return [status, true];
+  }
+
+  return res.status(400).json({ error: "Invalid proxy service type" });
 }
-
-
-async function fetchDataFromWGeasy(endpoint, widget, sid) {
-    const api = widgets?.[widget.type]?.api;
-    if (!api) {
-        return [403, null];
-    }
-    const url = `${new URL(formatApiCall(api, { endpoint, ...widget }))}`
-    const [status, contentType, data] = await httpProxy(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Cookie': sid
-        },
-    });
-
-    if (status !== 200) {
-        logger.error("HTTP %d communicating with WGeasy. Data: %s", status, data.toString());
-        return [status, data];
-    }
-
-    try {
-        return [status, JSON.parse(data), contentType];
-    } catch (e) {
-        logger.error("Error decoding WGeasy API data. Data: %s", data.toString());
-        return [status, null];
-    }
-}
-
-export default async function WGeasyProxyHandler(req, res) {
-    const widget = await getWidget(req);
-
-    if (!globalSid) {
-        await loginToWGEasy('session', widget);
-    }
-    if (!widget) {
-        return res.status(400).json({ error: "Invalid proxy service type" });
-    }
-
-    logger.debug("Getting data from WGeasy API");
-    // Calculate the number of clients
-    const [status, apiData] = await fetchDataFromWGeasy('wireguard/client', widget, globalSid);
-
-    if (status !== 200) {
-        return res.status(status).json({ error: { message: "HTTP error communicating with WGeasy API", data: Buffer.from(apiData).toString() } });
-    }
-    let clientCount = 0;
-    clientCount = apiData.length;
-
-    const data = {
-        clientCount
-    };
-
-    return res.status(status).send(data);
-
-}
-
