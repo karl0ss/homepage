@@ -872,7 +872,8 @@
     "blueiris": {
         "serverName": "Server Name",
         "numberOfActiveCams": "Active Cameras",
-        "numberOfAlerts": "Total Alerts"
+        "numberOfAlerts": "Total Alerts",
+        "numberOfNewAlerts": "New Alerts"
     },
     "stash": {
         "scenes": "Scenes",

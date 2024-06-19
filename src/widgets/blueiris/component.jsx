@@ -23,6 +23,7 @@ export default function Component({ service }) {
         <Block label="blueiris.serverName" />
         <Block label="blueiris.numberOfActiveCams" />
         <Block label="blueiris.numberOfAlerts" />
+        <Block label="blueiris.numberOfNewAlerts" />
       </Container>
     );
   }
@@ -32,6 +33,7 @@ export default function Component({ service }) {
       <Block label="blueiris.serverName" value= {blueirisData.serverName} />
       <Block label="blueiris.numberOfActiveCams" value={t("common.number", { value: blueirisData.numberOfActiveCams })} />
       <Block label="blueiris.numberOfAlerts" value={t("common.number", { value: blueirisData.totalNumberOfAlerts })} />
+      <Block label="blueiris.numberOfNewAlerts" value={t("common.number", { value: blueirisData.totalNumberOfNewAlerts })} />
     </Container>
   );
 }

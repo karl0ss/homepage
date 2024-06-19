@@ -61,7 +61,7 @@ const activeCamCount = async (widget, session) => {
     return cameraList;
 };
 
-const numberOfAlerts = async (widget, session) => {
+const getAllAlerts = async (widget, session) => {
     const res = await activeCamCount(widget, session);
     const promises = res.map(item => executeCMD(widget.url, `{"cmd":"alertlist", "camera":"${item.optionDisplay}", "session":"${session}"}`));
     const results = await Promise.all(promises);
@@ -69,16 +69,25 @@ const numberOfAlerts = async (widget, session) => {
     return alerts;  
 };
 
+const getNewAlerts = async (widget, session) => {
+    const res = await activeCamCount(widget, session);
+    const promises = res.map(item => executeCMD(widget.url, `{"cmd":"alertlist", "camera":"${item.optionDisplay}", "session":"${session}", "view":"new"}`));
+    const results = await Promise.all(promises);
+    const alerts = results.reduce((acc, r) => acc + r.data.length, 0);
+    return alerts;  
+};
 
 export default async function blueirisProxyHandler(req, res) {
     const widget = await getWidget(req);
     const globalUserData = await userLogin(widget);
     const activeCams = await activeCamCount(widget, globalUserData.session);
-    const alerts = await numberOfAlerts(widget, globalUserData.session);
+    const allAlerts = await getAllAlerts(widget, globalUserData.session);
+    const newAlerts = await getNewAlerts(widget, globalUserData.session);
     const data = {
         "serverName":globalUserData.serverName,
         "numberOfActiveCams":activeCams.length,
-        "totalNumberOfAlerts":alerts,
+        "totalNumberOfAlerts":allAlerts,
+        "totalNumberOfNewAlerts":newAlerts
     };
     return res.status(200).send(data);
 
