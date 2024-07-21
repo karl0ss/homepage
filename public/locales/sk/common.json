@@ -888,5 +888,22 @@
         "auth": "With Auth",
         "outdated": "Zastarané",
         "banned": "Zabanovaný"
+    },
+    "myspeed": {
+        "ping": "Odozva",
+        "download": "Sťahovanie",
+        "upload": "Nahrávanie"
+    },
+    "stocks": {
+        "stocks": "Stocks",
+        "loading": "Loading",
+        "open": "Open - US Market",
+        "closed": "Closed - US Market",
+        "invalidConfiguration": "Invalid Configuration"
+    },
+    "frigate": {
+        "cameras": "Cameras",
+        "uptime": "Prevádzka",
+        "version": "Verzia"
     }
 }

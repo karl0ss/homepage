@@ -1,6 +1,6 @@
 ---
-title: Widget Guide
-description: How to create a custom widget for Homepage.
+title: Widget Tutorial
+description: Follow along with this guide to learn how to create a custom widget for Homepage. We'll cover the basic structure of a widget, how to use translations, and how to fetch data from an API.
 ---
 
 In this guide, we'll walk through the process of creating a custom widget for Homepage. We'll cover the basic structure of a widget, how to use translations, and how to fetch data from an API. By the end of this guide, you'll have a solid understanding of how to build your own custom widget.
@@ -55,25 +55,9 @@ export default widget;
 
     All widgets that fetch data from dynamic endpoints should have either `mappings` or an `allowedEndpoints` property.
 
-## Set up translation strings
+## Including translation strings in your widget
 
-Homepage uses translated and localized strings for **all text and numerical content** in widgets. English is the default language, and other languages can be added via [Crowdin](https://crowdin.com/project/gethomepage). To add the English translations for your widget, follow these steps:
-
-Open the `public/locales/en/common.js` file.
-
-Add a new object for your widget to the bottom of the list, like this:
-
-```json
-"yourwidget": {
-  "key1": "Value 1",
-  "key2": "Value 2",
-  "key3": "Value 3"
-}
-```
-
-!!! note
-
-    Even if you nativly speak another language, you should only add English translations.  You can then add translations in your native language via [Crowdin](https://crowdin.com/project/gethomepage), once your widget is merged.
+Refer to the [translations guide](translations.md) for more details. The Homepage community prides itself on being multilingual, and we strongly encourage you to add translations for your widgets.
 
 ## Create the widget component
 

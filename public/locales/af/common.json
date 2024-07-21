@@ -884,9 +884,26 @@
         "total": "Totaal"
     },
     "swagdashboard": {
-        "proxied": "Proxied",
-        "auth": "With Auth",
-        "outdated": "Outdated",
-        "banned": "Banned"
+        "proxied": "Gevolmagtig",
+        "auth": "Met Aut",
+        "outdated": "Verouderd",
+        "banned": "Verban"
+    },
+    "myspeed": {
+        "ping": "Pieng",
+        "download": "Aflaai",
+        "upload": "Laai Op"
+    },
+    "stocks": {
+        "stocks": "Aandele",
+        "loading": "Laai",
+        "open": "Oop - VS Mark",
+        "closed": "Toe - VS Mark",
+        "invalidConfiguration": "Ongeldige opstelling"
+    },
+    "frigate": {
+        "cameras": "Cameras",
+        "uptime": "Optyd",
+        "version": "Weergawe"
     }
 }

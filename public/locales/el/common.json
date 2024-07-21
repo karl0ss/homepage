@@ -888,5 +888,22 @@
         "auth": "With Auth",
         "outdated": "Outdated",
         "banned": "Banned"
+    },
+    "myspeed": {
+        "ping": "Ping",
+        "download": "Λήξη",
+        "upload": "Μεταφόρτωση"
+    },
+    "stocks": {
+        "stocks": "Stocks",
+        "loading": "Loading",
+        "open": "Open - US Market",
+        "closed": "Closed - US Market",
+        "invalidConfiguration": "Invalid Configuration"
+    },
+    "frigate": {
+        "cameras": "Cameras",
+        "uptime": "Χρόνος Λειτουργίας",
+        "version": "Έκδοση"
     }
 }

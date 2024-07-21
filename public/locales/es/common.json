@@ -31,7 +31,7 @@
     },
     "weather": {
         "current": "Ubicación actual",
-        "allow": "Clic para permitir",
+        "allow": "Pulsa para permitir",
         "updating": "Actualizando",
         "wait": "Espera, por favor"
     },
@@ -77,9 +77,9 @@
         "unknown": "Desconocido",
         "healthy": "Saludable",
         "starting": "Comenzando",
-        "unhealthy": "Insalubre",
+        "unhealthy": "No saludable",
         "not_found": "No encontrado",
-        "exited": "Salida",
+        "exited": "Terminado",
         "partial": "Parcial"
     },
     "ping": {
@@ -884,9 +884,26 @@
         "total": "Total"
     },
     "swagdashboard": {
-        "proxied": "Proxied",
-        "auth": "With Auth",
-        "outdated": "Outdated",
-        "banned": "Banned"
+        "proxied": "Proxy activado",
+        "auth": "Con Autenticación",
+        "outdated": "Desactualizado",
+        "banned": "Baneado"
+    },
+    "myspeed": {
+        "ping": "Ping",
+        "download": "Descarga",
+        "upload": "Subida"
+    },
+    "stocks": {
+        "stocks": "Acciones",
+        "loading": "Cargando",
+        "open": "Abierto - Mercado EEUU",
+        "closed": "Cerrado - Mercado EEUU",
+        "invalidConfiguration": "Configuración no válida"
+    },
+    "frigate": {
+        "cameras": "Cameras",
+        "uptime": "Tiempo activo",
+        "version": "Versión"
     }
 }

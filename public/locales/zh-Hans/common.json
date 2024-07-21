@@ -888,5 +888,22 @@
         "auth": "使用认证",
         "outdated": "已过期",
         "banned": "已禁止"
+    },
+    "myspeed": {
+        "ping": "Ping",
+        "download": "下载速率",
+        "upload": "上传速率"
+    },
+    "stocks": {
+        "stocks": "Stocks",
+        "loading": "Loading",
+        "open": "Open - US Market",
+        "closed": "Closed - US Market",
+        "invalidConfiguration": "Invalid Configuration"
+    },
+    "frigate": {
+        "cameras": "Cameras",
+        "uptime": "运行时间",
+        "version": "版本"
     }
 }

@@ -888,5 +888,22 @@
         "auth": "With Auth",
         "outdated": "Outdated",
         "banned": "Banned"
+    },
+    "myspeed": {
+        "ping": "Ping",
+        "download": "ダウンロード",
+        "upload": "アップロード"
+    },
+    "stocks": {
+        "stocks": "Stocks",
+        "loading": "Loading",
+        "open": "Open - US Market",
+        "closed": "Closed - US Market",
+        "invalidConfiguration": "Invalid Configuration"
+    },
+    "frigate": {
+        "cameras": "Cameras",
+        "uptime": "稼働時間",
+        "version": "バージョン"
     }
 }
