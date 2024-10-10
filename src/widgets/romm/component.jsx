@@ -10,11 +10,20 @@ const MAX_ALLOWED_FIELDS = 4;
 export default function Component({ service }) {
   const { widget } = service;
   const { t } = useTranslation();
-  const { data: response, error: responseError } = useWidgetAPI(widget, "statistics");
 
-  if (responseError) {
-    return <Container service={service} error={responseError} />;
-  }
+    const { data: response, error: responseError } = useWidgetAPI(widget, "statistics");
+
+    if (responseError) {
+        return (
+            <Container service={service}>
+                <Block label="Error" value={responseError.message} />
+            </Container>
+        );
+    }
+
+    if (responseError) {
+        return <Container service={service} error={responseError} />;
+    }
 
   if (!widget.fields?.length > 0) {
     widget.fields = ROMM_DEFAULT_FIELDS;
