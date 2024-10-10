@@ -126,7 +126,6 @@ import jdrssdownloader from "./jdrssdownloader/widget";
 import urbackup from "./urbackup/widget";
 import wled from "./wled/widget";
 import blueiris from "./blueiris/widget";
-import romm from "./romm/widget";
 import zabbix from "./zabbix/widget";
 
 const widgets = {
