@@ -15,6 +15,7 @@ import coinmarketcap from "./coinmarketcap/widget";
 import crowdsec from "./crowdsec/widget";
 import customapi from "./customapi/widget";
 import deluge from "./deluge/widget";
+import develancacheui from "./develancacheui/widget";
 import diskstation from "./diskstation/widget";
 import downloadstation from "./downloadstation/widget";
 import emby from "./emby/widget";
@@ -46,6 +47,9 @@ import kavita from "./kavita/widget";
 import komga from "./komga/widget";
 import kopia from "./kopia/widget";
 import lidarr from "./lidarr/widget";
+import linkwarden from "./linkwarden/widget";
+import lubelogger from "./lubelogger/widget";
+import mailcow from "./mailcow/widget";
 import mastodon from "./mastodon/widget";
 import mealie from "./mealie/widget";
 import medusa from "./medusa/widget";
@@ -103,6 +107,7 @@ import swagdashboard from "./swagdashboard/widget";
 import tailscale from "./tailscale/widget";
 import tandoor from "./tandoor/widget";
 import tautulli from "./tautulli/widget";
+import technitium from "./technitium/widget";
 import tdarr from "./tdarr/widget";
 import titlecardmaker from "./titlecardmaker/widget";
 import traefik from "./traefik/widget";
@@ -121,6 +126,8 @@ import jdrssdownloader from "./jdrssdownloader/widget";
 import urbackup from "./urbackup/widget";
 import wled from "./wled/widget";
 import blueiris from "./blueiris/widget";
+import romm from "./romm/widget";
+import zabbix from "./zabbix/widget";
 
 const widgets = {
   adguard,
@@ -140,6 +147,7 @@ const widgets = {
   crowdsec,
   customapi,
   deluge,
+  develancacheui,
   diskstation,
   downloadstation,
   emby,
@@ -174,6 +182,9 @@ const widgets = {
   komga,
   kopia,
   lidarr,
+  linkwarden,
+  lubelogger,
+  mailcow,
   mastodon,
   mealie,
   medusa,
@@ -232,6 +243,7 @@ const widgets = {
   tailscale,
   tandoor,
   tautulli,
+  technitium,
   tdarr,
   titlecardmaker,
   traefik,
@@ -249,6 +261,7 @@ const widgets = {
   whatsupdocker,
   xteve,
   wled
+  zabbix,
 };
 
 export default widgets;
