@@ -259,8 +259,8 @@ const widgets = {
   wgeasy,
   whatsupdocker,
   xteve,
-  wled
-  zabbix,
+  wled,
+  zabbix
 };
 
 export default widgets;
