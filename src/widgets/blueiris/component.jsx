@@ -29,7 +29,7 @@ export default function Component({ service }) {
 
   return (
     <Container service={service}>
-      <Block label="blueiris.serverName" value= {blueirisData.serverName} />
+      <Block label="blueiris.serverName" value={blueirisData.serverName} />
       <Block label="blueiris.numberOfActiveCams" value={t("common.number", { value: blueirisData.numberOfActiveCams })} />
       <Block label="blueiris.numberOfAlerts" value={t("common.number", { value: blueirisData.totalNumberOfAlerts })} />
       <Block label="blueiris.numberOfNewAlerts" value={t("common.number", { value: blueirisData.totalNumberOfNewAlerts })} />
