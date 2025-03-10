@@ -9,10 +9,10 @@ import widgets from "widgets/widgets";
 const logger = createLogger("credentialedProxyHandler");
 
 export default async function credentialedProxyHandler(req, res, map) {
-  const { group, service, endpoint } = req.query;
+  const { group, service, endpoint, index } = req.query;
 
   if (group && service) {
-    const widget = await getServiceWidget(group, service);
+    const widget = await getServiceWidget(group, service, index);
 
     if (!widgets?.[widget.type]?.api) {
       return res.status(403).json({ error: "Service does not support API calls" });
@@ -36,14 +36,19 @@ export default async function credentialedProxyHandler(req, res, map) {
         headers["X-gotify-Key"] = `${widget.key}`;
       } else if (
         [
+          "argocd",
           "authentik",
           "cloudflared",
           "ghostfolio",
+          "headscale",
           "linkwarden",
           "mealie",
+          "netalertx",
           "tailscale",
           "tandoor",
           "pterodactyl",
+          "vikunja",
+          "firefly",
         ].includes(widget.type)
       ) {
         headers.Authorization = `Bearer ${widget.key}`;
@@ -85,11 +90,20 @@ export default async function credentialedProxyHandler(req, res, map) {
       } else if (widget.type === "myspeed") {
         headers.Password = `${widget.password}`;
       } else if (widget.type === "esphome") {
-        if (widget.key) {
+        if (widget.username && widget.password) {
+          headers.Authorization = `Basic ${Buffer.from(`${widget.username}:${widget.password}`).toString("base64")}`;
+        } else if (widget.key) {
           headers.Cookie = `authenticated=${widget.key}`;
         }
       } else if (widget.type === "wgeasy") {
         headers.Authorization = widget.password;
+      } else if (widget.type === "gitlab") {
+        headers["PRIVATE-TOKEN"] = widget.key;
+      } else if (widget.type === "speedtest") {
+        if (widget.key) {
+          // v1 does not require a key
+          headers.Authorization = `Bearer ${widget.key}`;
+        }
       } else {
         headers["X-API-Key"] = `${widget.key}`;
       }

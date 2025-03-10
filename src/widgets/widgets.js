@@ -1,10 +1,13 @@
 import adguard from "./adguard/widget";
+import apcups from "./apcups/widget";
+import argocd from "./argocd/widget";
 import atsumeru from "./atsumeru/widget";
 import audiobookshelf from "./audiobookshelf/widget";
 import authentik from "./authentik/widget";
 import autobrr from "./autobrr/widget";
 import azuredevops from "./azuredevops/widget";
 import bazarr from "./bazarr/widget";
+import beszel from "./beszel/widget";
 import caddy from "./caddy/widget";
 import calendar from "./calendar/widget";
 import calibreweb from "./calibreweb/widget";
@@ -22,6 +25,7 @@ import emby from "./emby/widget";
 import esphome from "./esphome/widget";
 import evcc from "./evcc/widget";
 import fileflows from "./fileflows/widget";
+import firefly from "./firefly/widget";
 import flood from "./flood/widget";
 import freshrss from "./freshrss/widget";
 import frigate from "./frigate/widget";
@@ -30,11 +34,13 @@ import gamedig from "./gamedig/widget";
 import gatus from "./gatus/widget";
 import ghostfolio from "./ghostfolio/widget";
 import gitea from "./gitea/widget";
+import gitlab from "./gitlab/widget";
 import glances from "./glances/widget";
 import gluetun from "./gluetun/widget";
 import gotify from "./gotify/widget";
 import grafana from "./grafana/widget";
 import hdhomerun from "./hdhomerun/widget";
+import headscale from "./headscale/widget";
 import homeassistant from "./homeassistant/widget";
 import homebox from "./homebox/widget";
 import homebridge from "./homebridge/widget";
@@ -86,6 +92,7 @@ import plantit from "./plantit/widget";
 import plex from "./plex/widget";
 import portainer from "./portainer/widget";
 import prometheus from "./prometheus/widget";
+import prometheusmetric from "./prometheusmetric/widget";
 import prowlarr from "./prowlarr/widget";
 import proxmox from "./proxmox/widget";
 import pterodactyl from "./pterodactyl/widget";
@@ -100,10 +107,12 @@ import sabnzbd from "./sabnzbd/widget";
 import scrutiny from "./scrutiny/widget";
 import sonarr from "./sonarr/widget";
 import speedtest from "./speedtest/widget";
+import spoolman from "./spoolman/widget";
 import stash from "./stash/widget";
 import stocks from "./stocks/widget";
 import strelaysrv from "./strelaysrv/widget";
 import swagdashboard from "./swagdashboard/widget";
+import suwayomi from "./suwayomi/widget";
 import tailscale from "./tailscale/widget";
 import tandoor from "./tandoor/widget";
 import tautulli from "./tautulli/widget";
@@ -118,6 +127,7 @@ import unifi from "./unifi/widget";
 import unmanic from "./unmanic/widget";
 import uptimekuma from "./uptimekuma/widget";
 import uptimerobot from "./uptimerobot/widget";
+import vikunja from "./vikunja/widget";
 import watchtower from "./watchtower/widget";
 import wgeasy from "./wgeasy/widget";
 import whatsupdocker from "./whatsupdocker/widget";
@@ -130,6 +140,8 @@ import zabbix from "./zabbix/widget";
 
 const widgets = {
   adguard,
+  apcups,
+  argocd,
   atsumeru,
   audiobookshelf,
   authentik,
@@ -137,6 +149,7 @@ const widgets = {
   azuredevops,
   bazarr,
   blueiris,
+  beszel,
   caddy,
   calibreweb,
   changedetectionio,
@@ -153,6 +166,7 @@ const widgets = {
   esphome,
   evcc,
   fileflows,
+  firefly,
   flood,
   freshrss,
   frigate,
@@ -161,11 +175,13 @@ const widgets = {
   gatus,
   ghostfolio,
   gitea,
+  gitlab,
   glances,
   gluetun,
   gotify,
   grafana,
   hdhomerun,
+  headscale,
   homeassistant,
   homebox,
   homebridge,
@@ -221,6 +237,7 @@ const widgets = {
   plex,
   portainer,
   prometheus,
+  prometheusmetric,
   prowlarr,
   proxmox,
   pterodactyl,
@@ -235,10 +252,12 @@ const widgets = {
   scrutiny,
   sonarr,
   speedtest,
+  spoolman,
   stash,
   stocks,
   strelaysrv,
   swagdashboard,
+  suwayomi,
   tailscale,
   tandoor,
   tautulli,
@@ -255,6 +274,7 @@ const widgets = {
   uptimekuma,
   uptimerobot,
   urbackup,
+  vikunja,
   watchtower,
   wgeasy,
   whatsupdocker,

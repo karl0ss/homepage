@@ -9,23 +9,23 @@ import { useEffect, useContext, useState, useMemo } from "react";
 import { BiError } from "react-icons/bi";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
-
 import Tab, { slugifyAndEncode } from "components/tab";
 import ServicesGroup from "components/services/group";
 import BookmarksGroup from "components/bookmarks/group";
 import Widget from "components/widgets/widget";
 import Revalidate from "components/toggles/revalidate";
-import createLogger from "utils/logger";
-import useWindowFocus from "utils/hooks/window-focus";
-import { getSettings } from "utils/config/config";
 import { ColorContext } from "utils/contexts/color";
 import { ThemeContext } from "utils/contexts/theme";
 import { SettingsContext } from "utils/contexts/settings";
 import { TabContext } from "utils/contexts/tab";
-import { bookmarksResponse, servicesResponse, widgetsResponse } from "utils/config/api-response";
 import ErrorBoundary from "components/errorboundry";
-import themes from "utils/styles/themes";
 import QuickLaunch from "components/quicklaunch";
+
+import { bookmarksResponse, servicesResponse, widgetsResponse } from "utils/config/api-response";
+import themes from "utils/styles/themes";
+import { getSettings } from "utils/config/config";
+import useWindowFocus from "utils/hooks/window-focus";
+import createLogger from "utils/logger";
 
 const ThemeToggle = dynamic(() => import("components/toggles/theme"), {
   ssr: false,
@@ -86,6 +86,7 @@ function Index({ initialSettings, fallback }) {
   const windowFocused = useWindowFocus();
   const [stale, setStale] = useState(false);
   const { data: errorsData } = useSWR("/api/validate");
+  const { error: validateError } = errorsData || {};
   const { data: hashData, mutate: mutateHash } = useSWR("/api/hash");
 
   useEffect(() => {
@@ -116,6 +117,24 @@ function Index({ initialSettings, fallback }) {
       }
     }
   }, [hashData]);
+
+  if (validateError) {
+    return (
+      <div className="w-full h-screen container m-auto justify-center p-10 pointer-events-none">
+        <div className="flex flex-col">
+          <div className="basis-1/2 bg-theme-500 dark:bg-theme-600 text-theme-600 dark:text-theme-300 m-2 rounded-md font-mono shadow-md border-4 border-transparent">
+            <div className="bg-rose-200 text-rose-800 dark:text-rose-200 dark:bg-rose-800 p-2 rounded-md font-bold">
+              <BiError className="float-right w-6 h-6" />
+              Error
+            </div>
+            <div className="p-2 text-theme-100 dark:text-theme-200">
+              <pre className="opacity-50 font-bold pb-2">{validateError}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (stale) {
     return (
@@ -166,6 +185,18 @@ const headerStyles = {
   boxedWidgets: "m-5 mb-0 sm:m-9 sm:mb-0 sm:mt-1",
 };
 
+function getAllServices(services) {
+  function getServices(group) {
+    let nestedServices = [...group.services];
+    if (group.groups.length > 0) {
+      nestedServices = [...nestedServices, ...group.groups.map(getServices).flat()];
+    }
+    return nestedServices;
+  }
+
+  return [...services.map(getServices).flat()];
+}
+
 function Home({ initialSettings }) {
   const { i18n } = useTranslation();
   const { theme, setTheme } = useContext(ThemeContext);
@@ -182,10 +213,9 @@ function Home({ initialSettings }) {
   const { data: bookmarks } = useSWR("/api/bookmarks");
   const { data: widgets } = useSWR("/api/widgets");
 
-  const servicesAndBookmarks = [
-    ...services.map((sg) => sg.services).flat(),
-    ...bookmarks.map((bg) => bg.bookmarks).flat(),
-  ].filter((i) => i?.href);
+  const servicesAndBookmarks = [...bookmarks.map((bg) => bg.bookmarks).flat(), ...getAllServices(services)].filter(
+    (i) => i?.href,
+  );
 
   useEffect(() => {
     if (settings.language) {
@@ -291,8 +321,7 @@ function Home({ initialSettings }) {
               group.services ? (
                 <ServicesGroup
                   key={group.name}
-                  group={group.name}
-                  services={group}
+                  group={group}
                   layout={settings.layout?.[group.name]}
                   fiveColumns={settings.fiveColumns}
                   disableCollapse={settings.disableCollapse}
@@ -316,8 +345,7 @@ function Home({ initialSettings }) {
             {serviceGroups.map((group) => (
               <ServicesGroup
                 key={group.name}
-                group={group.name}
-                services={group}
+                group={group}
                 layout={settings.layout?.[group.name]}
                 fiveColumns={settings.fiveColumns}
                 disableCollapse={settings.disableCollapse}
@@ -335,6 +363,7 @@ function Home({ initialSettings }) {
                 layout={settings.layout?.[group.name]}
                 disableCollapse={settings.disableCollapse}
                 groupsInitiallyCollapsed={settings.groupsInitiallyCollapsed}
+                bookmarksStyle={settings.bookmarksStyle}
               />
             ))}
           </div>
@@ -352,13 +381,21 @@ function Home({ initialSettings }) {
     settings.useEqualHeights,
     settings.cardBlur,
     settings.groupsInitiallyCollapsed,
+    settings.bookmarksStyle,
     initialSettings.layout,
   ]);
 
   return (
     <>
       <Head>
-        <title>{settings.title || "Homepage"}</title>
+        <title>{initialSettings.title || "Homepage"}</title>
+        <meta
+          name="description"
+          content={
+            initialSettings.description ||
+            "A highly customizable homepage (or startpage / application dashboard) with Docker and service API integrations."
+          }
+        />
         {settings.base && <base href={settings.base} />}
         {settings.favicon ? (
           <>
@@ -376,8 +413,6 @@ function Home({ initialSettings }) {
         )}
         <meta name="msapplication-TileColor" content={themes[settings.color || "slate"][settings.theme || "dark"]} />
         <meta name="theme-color" content={themes[settings.color || "slate"][settings.theme || "dark"]} />
-        <link rel="preload" href="/api/config/custom.css" as="style" />
-        <link rel="stylesheet" href="/api/config/custom.css" /> {/* eslint-disable-line @next/next/no-css-tags */}
       </Head>
 
       <Script src="/api/config/custom.js" />
@@ -454,6 +489,7 @@ function Home({ initialSettings }) {
 }
 
 export default function Wrapper({ initialSettings, fallback }) {
+  const { themeContext } = useContext(ThemeContext);
   const wrappedStyle = {};
   let backgroundBlur = false;
   let backgroundSaturate = false;
@@ -486,6 +522,7 @@ export default function Wrapper({ initialSettings, fallback }) {
         "relative",
         initialSettings.theme && initialSettings.theme,
         initialSettings.color && `theme-${initialSettings.color}`,
+        themeContext === "dark" ? "scheme-dark" : "scheme-light",
       )}
     >
       <div
@@ -499,7 +536,9 @@ export default function Wrapper({ initialSettings, fallback }) {
           className={classNames(
             "fixed overflow-auto w-full h-full",
             backgroundBlur &&
-              `backdrop-blur${initialSettings.background.blur.length ? "-" : ""}${initialSettings.background.blur}`,
+              `backdrop-blur${initialSettings.background.blur.length ? "-" : ""}${
+                initialSettings.background.blur - sm
+              }`,
             backgroundSaturate && `backdrop-saturate-${initialSettings.background.saturate}`,
             backgroundBrightness && `backdrop-brightness-${initialSettings.background.brightness}`,
           )}

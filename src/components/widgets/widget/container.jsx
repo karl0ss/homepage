@@ -1,4 +1,6 @@
 import classNames from "classnames";
+import { useContext } from "react";
+import { SettingsContext } from "utils/contexts/settings";
 
 import WidgetIcon from "./widget_icon";
 import PrimaryText from "./primary_text";
@@ -56,7 +58,17 @@ export function getBottomBlock(children) {
 }
 
 export default function Container({ children = [], options, additionalClassNames = "" }) {
-  return (
+  const { settings } = useContext(SettingsContext);
+  return options?.href ? (
+    <a
+      href={options.href}
+      target={options.target ?? settings.target ?? "_blank"}
+      className={getAllClasses(options, `${additionalClassNames} widget-container`)}
+    >
+      {getInnerBlock(children)}
+      {getBottomBlock(children)}
+    </a>
+  ) : (
     <div className={getAllClasses(options, `${additionalClassNames} widget-container`)}>
       {getInnerBlock(children)}
       {getBottomBlock(children)}

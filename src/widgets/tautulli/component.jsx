@@ -2,8 +2,8 @@
 import { useTranslation } from "next-i18next";
 import { BsFillPlayFill, BsPauseFill, BsCpu, BsFillCpuFill } from "react-icons/bs";
 import { MdOutlineSmartDisplay, MdSmartDisplay } from "react-icons/md";
-
 import Container from "components/services/widget/container";
+
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 function millisecondsToTime(milliseconds) {
@@ -205,7 +205,7 @@ export default function Component({ service }) {
     <div className="flex flex-col pb-1 mx-1">
       {playing.map((session) => (
         <SessionEntry
-          key={session.Id}
+          key={session.session_key}
           session={session}
           enableUser={enableUser}
           showEpisodeNumber={showEpisodeNumber}
