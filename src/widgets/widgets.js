@@ -136,7 +136,6 @@ import wgeasy from "./wgeasy/widget";
 import whatsupdocker from "./whatsupdocker/widget";
 import xteve from "./xteve/widget";
 import jdrssdownloader from "./jdrssdownloader/widget";
-import urbackup from "./urbackup/widget";
 import wled from "./wled/widget";
 import blueiris from "./blueiris/widget";
 import zabbix from "./zabbix/widget";
