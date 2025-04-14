@@ -1,9 +1,9 @@
 import cache from "memory-cache";
 
-import { httpProxy } from "utils/proxy/http";
-import { formatApiCall } from "utils/proxy/api-helpers";
 import getServiceWidget from "utils/config/service-helpers";
 import createLogger from "utils/logger";
+import { formatApiCall } from "utils/proxy/api-helpers";
+import { httpProxy } from "utils/proxy/http";
 import widgets from "widgets/widgets";
 
 const proxyName = "kavitaProxyHandler";
@@ -12,12 +12,22 @@ const logger = createLogger(proxyName);
 
 async function login(widget, service) {
   const endpoint = "Account/login";
-  const api = widgets?.[widget.type]?.api
+  const api = widgets?.[widget.type]?.api;
   const loginUrl = new URL(formatApiCall(api, { endpoint, ...widget }));
-  const loginBody = { username: widget.username, password: widget.password };
-  const headers = { "Content-Type": "application/json", "accept": "text/plain" };
+  const loginBody = {
+    username: "",
+    password: "",
+    apiKey: "",
+  };
+  if (widget.username && widget.password) {
+    loginBody.username = widget.username;
+    loginBody.password = widget.password;
+  } else if (widget.key) {
+    loginBody.apiKey = widget.key;
+  }
+  const headers = { "Content-Type": "application/json", accept: "text/plain" };
 
-  const [, , data,] = await httpProxy(loginUrl, {
+  const [, , data] = await httpProxy(loginUrl, {
     method: "POST",
     body: JSON.stringify(loginBody),
     headers,
@@ -38,8 +48,8 @@ async function apiCall(widget, endpoint, service) {
   const key = `${sessionTokenCacheKey}.${service}`;
   const headers = {
     "content-type": "application/json",
-    "Authorization": `Bearer ${cache.get(key)}`,
-  }
+    Authorization: `Bearer ${cache.get(key)}`,
+  };
 
   const url = new URL(formatApiCall(widgets[widget.type].api, { endpoint, ...widget }));
   const method = "GET";
@@ -70,14 +80,14 @@ async function apiCall(widget, endpoint, service) {
 }
 
 export default async function KavitaProxyHandler(req, res) {
-  const { group, service } = req.query;
+  const { group, service, index } = req.query;
 
   if (!group || !service) {
     logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
     return res.status(400).json({ error: "Invalid proxy service type" });
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
   if (!widget) {
     logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);
     return res.status(400).json({ error: "Invalid proxy service type" });
@@ -91,6 +101,6 @@ export default async function KavitaProxyHandler(req, res) {
 
   return res.status(200).send({
     seriesCount: statsData?.seriesCount,
-    totalFiles: statsData?.totalFiles
+    totalFiles: statsData?.totalFiles,
   });
 }

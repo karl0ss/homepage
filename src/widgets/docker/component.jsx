@@ -1,10 +1,9 @@
-import useSWR from "swr";
-import { useTranslation } from "next-i18next";
-
-import { calculateCPUPercent, calculateUsedMemory } from "./stats-helpers";
-
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+import { useTranslation } from "next-i18next";
+import useSWR from "swr";
+
+import { calculateCPUPercent, calculateThroughput, calculateUsedMemory } from "./stats-helpers";
 
 export default function Component({ service }) {
   const { t } = useTranslation();
@@ -12,7 +11,7 @@ export default function Component({ service }) {
   const { widget } = service;
 
   const { data: statusData, error: statusError } = useSWR(
-    `/api/docker/status/${widget.container}/${widget.server || ""}`
+    `/api/docker/status/${widget.container}/${widget.server || ""}`,
   );
 
   const { data: statsData, error: statsError } = useSWR(`/api/docker/stats/${widget.container}/${widget.server || ""}`);
@@ -41,18 +40,18 @@ export default function Component({ service }) {
     );
   }
 
-  const network = statsData.stats.networks?.eth0 || statsData.stats.networks?.network;
+  const { rxBytes, txBytes } = calculateThroughput(statsData.stats);
 
   return (
     <Container service={service}>
       <Block label="docker.cpu" value={t("common.percent", { value: calculateCPUPercent(statsData.stats) })} />
-      {statsData.stats.memory_stats.usage && 
+      {statsData.stats.memory_stats.usage && (
         <Block label="docker.mem" value={t("common.bytes", { value: calculateUsedMemory(statsData.stats) })} />
-      }
-      {network && (
+      )}
+      {statsData.stats.networks && (
         <>
-          <Block label="docker.rx" value={t("common.bytes", { value: network.rx_bytes })} />
-          <Block label="docker.tx" value={t("common.bytes", { value: network.tx_bytes })} />
+          <Block label="docker.rx" value={t("common.bytes", { value: rxBytes })} />
+          <Block label="docker.tx" value={t("common.bytes", { value: txBytes })} />
         </>
       )}
     </Container>

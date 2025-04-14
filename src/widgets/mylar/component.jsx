@@ -1,7 +1,7 @@
+import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
 import { useTranslation } from "next-i18next";
 
-import Container from "components/services/widget/container";
-import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -32,7 +32,7 @@ export default function Component({ service }) {
 
   return (
     <Container service={service}>
-      <Block label="mylar.series" value={t("common.number", { value: seriesData.data.length })} />  
+      <Block label="mylar.series" value={t("common.number", { value: seriesData.data.length })} />
       <Block label="mylar.issues" value={t("common.number", { value: totalIssues })} />
       <Block label="mylar.wanted" value={t("common.number", { value: wantedData.issues.length })} />
     </Container>

@@ -5,9 +5,12 @@ const widget = {
   proxyHandler: genericProxyHandler,
 
   mappings: {
-    "lineup": {
+    lineup: {
       endpoint: "lineup.json",
-    }
+    },
+    status: {
+      endpoint: "status.json",
+    },
   },
 };
 

@@ -1,7 +1,8 @@
 import minecraftProxyHandler from "./proxy";
 
 const widget = {
-  proxyHandler: minecraftProxyHandler
-}
+  proxyHandler: minecraftProxyHandler,
+  allowedEndpoints: /status/,
+};
 
 export default widget;

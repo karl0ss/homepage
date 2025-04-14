@@ -1,5 +1,6 @@
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -24,7 +25,10 @@ export default function Component({ service }) {
 
   return (
     <Container service={service}>
-      <Block label="cloudflared.status" value={statsData.result.status.charAt(0).toUpperCase() + statsData.result.status.slice(1)} />
+      <Block
+        label="cloudflared.status"
+        value={statsData.result.status.charAt(0).toUpperCase() + statsData.result.status.slice(1)}
+      />
       <Block label="cloudflared.origin_ip" value={originIP} />
     </Container>
   );

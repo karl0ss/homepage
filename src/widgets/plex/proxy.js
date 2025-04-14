@@ -2,10 +2,10 @@
 import cache from "memory-cache";
 import { xml2json } from "xml-js";
 
-import { formatApiCall } from "utils/proxy/api-helpers";
-import { httpProxy } from "utils/proxy/http";
 import getServiceWidget from "utils/config/service-helpers";
 import createLogger from "utils/logger";
+import { formatApiCall } from "utils/proxy/api-helpers";
+import { httpProxy } from "utils/proxy/http";
 import widgets from "widgets/widgets";
 
 const proxyName = "plexProxyHandler";
@@ -16,14 +16,14 @@ const tvCacheKey = `${proxyName}__tv`;
 const logger = createLogger(proxyName);
 
 async function getWidget(req) {
-  const { group, service } = req.query;
+  const { group, service, index } = req.query;
 
   if (!group || !service) {
     logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
     return null;
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
 
   if (!widget) {
     logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);
@@ -41,7 +41,12 @@ async function fetchFromPlexAPI(endpoint, widget) {
 
   const url = new URL(formatApiCall(api, { endpoint, ...widget }));
 
-  const [status, contentType, data] = await httpProxy(url);
+  const [status, contentType, data] = await httpProxy(url, {
+    headers: {
+      "X-Plex-Container-Start": `0`,
+      "X-Plex-Container-Size": `500`,
+    },
+  });
 
   if (status !== 200) {
     logger.error("HTTP %d communicating with Plex. Data: %s", status, data.toString());
@@ -59,7 +64,7 @@ async function fetchFromPlexAPI(endpoint, widget) {
 
 export default async function plexProxyHandler(req, res) {
   const widget = await getWidget(req);
-  
+
   const { service } = req.query;
 
   if (!widget) {
@@ -71,7 +76,9 @@ export default async function plexProxyHandler(req, res) {
   let [status, apiData] = await fetchFromPlexAPI("/status/sessions", widget);
 
   if (status !== 200) {
-    return res.status(status).json({error: {message: "HTTP error communicating with Plex API", data: Buffer.from(apiData).toString()}});
+    return res
+      .status(status)
+      .json({ error: { message: "HTTP error communicating with Plex API", data: Buffer.from(apiData).toString() } });
   }
 
   if (apiData && apiData.MediaContainer) {
@@ -96,28 +103,31 @@ export default async function plexProxyHandler(req, res) {
     movies = 0;
     tv = 0;
     logger.debug("Getting counts from Plex API");
-    const movieTVLibraries = libraries.filter(l => ["movie", "show", "artist"].includes(l._attributes.type));
-    await Promise.all(movieTVLibraries.map(async (library) => {
-      const libraryURL = ["movie", "show"].includes(library._attributes.type) ? 
-        `/library/sections/${library._attributes.key}/all` : // tv + movies
-        `/library/sections/${library._attributes.key}/albums`; // music
-      [status, apiData] = await fetchFromPlexAPI(libraryURL, widget);
-      if (apiData && apiData.MediaContainer) {
-        const size = parseInt(apiData.MediaContainer._attributes.size, 10);
-        if (library._attributes.type === "movie") {
-          movies += size;
-        } else if (library._attributes.type === "show") {
-          tv += size;
-        } else if (library._attributes.type === "artist") {
-          albums += size;
+    const movieTVLibraries = libraries.filter((l) => ["movie", "show", "artist"].includes(l._attributes.type));
+    await Promise.all(
+      movieTVLibraries.map(async (library) => {
+        const libraryURL = ["movie", "show"].includes(library._attributes.type)
+          ? `/library/sections/${library._attributes.key}/all` // tv + movies
+          : `/library/sections/${library._attributes.key}/albums`; // music
+        [status, apiData] = await fetchFromPlexAPI(libraryURL, widget);
+        if (apiData && apiData.MediaContainer) {
+          const sizeProp = apiData.MediaContainer._attributes["totalSize"] ? "totalSize" : "size";
+          const size = parseInt(apiData.MediaContainer._attributes[sizeProp], 10);
+          if (library._attributes.type === "movie") {
+            movies += size;
+          } else if (library._attributes.type === "show") {
+            tv += size;
+          } else if (library._attributes.type === "artist") {
+            albums += size;
+          }
         }
-      }
-    }));
+      }),
+    );
     cache.put(`${albumsCacheKey}.${service}`, albums, 1000 * 60 * 10);
     cache.put(`${tvCacheKey}.${service}`, tv, 1000 * 60 * 10);
     cache.put(`${moviesCacheKey}.${service}`, movies, 1000 * 60 * 10);
   }
-  
+
   const data = {
     streams,
     albums,

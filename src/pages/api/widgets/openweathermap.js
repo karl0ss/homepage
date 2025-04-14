@@ -1,9 +1,11 @@
-import cachedFetch from "utils/proxy/cached-fetch";
 import { getSettings } from "utils/config/config";
+import { getPrivateWidgetOptions } from "utils/config/widget-helpers";
+import { cachedRequest } from "utils/proxy/http";
 
 export default async function handler(req, res) {
-  const { latitude, longitude, units, provider, cache, lang } = req.query;
-  let { apiKey } = req.query;
+  const { latitude, longitude, units, provider, cache, lang, index } = req.query;
+  const privateWidgetOptions = await getPrivateWidgetOptions("openweathermap", index);
+  let { apiKey } = privateWidgetOptions;
 
   if (!apiKey && !provider) {
     return res.status(400).json({ error: "Missing API key or provider" });
@@ -24,5 +26,5 @@ export default async function handler(req, res) {
 
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}&lang=${lang}`;
 
-  return res.send(await cachedFetch(apiUrl, cache));
+  return res.send(await cachedRequest(apiUrl, cache));
 }

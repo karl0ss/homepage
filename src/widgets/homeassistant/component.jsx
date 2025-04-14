@@ -1,5 +1,6 @@
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -9,8 +10,12 @@ export default function Component({ service }) {
   if (error) {
     return <Container service={service} error={error} />;
   }
-  
-  return <Container service={service}>
-    {data?.map(d => <Block label={d.label} value={d.value} key={d.label} />)}
-  </Container>;
+
+  return (
+    <Container service={service}>
+      {data?.map((d) => (
+        <Block label={d.label} value={d.value} key={d.label} />
+      ))}
+    </Container>
+  );
 }

@@ -6,10 +6,8 @@ const widget = {
 
   mappings: {
     targets: {
-      endpoint: "targets",
-      validate: [
-        "data"
-      ]
+      endpoint: "targets?state=active",
+      validate: ["data"],
     },
   },
 };

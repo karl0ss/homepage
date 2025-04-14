@@ -1,5 +1,6 @@
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -13,7 +14,6 @@ export default function Component({ service }) {
     const finalError = appsError ?? messagesError ?? clientsError;
     return <Container service={service} error={finalError} />;
   }
-
 
   if (!appsData || !messagesData || !clientsData) {
     return (

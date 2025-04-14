@@ -1,6 +1,6 @@
-import { httpProxy } from "utils/proxy/http";
-import createLogger from "utils/logger";
 import { getPrivateWidgetOptions } from "utils/config/widget-helpers";
+import createLogger from "utils/logger";
+import { httpProxy } from "utils/proxy/http";
 
 const logger = createLogger("glances");
 
@@ -13,25 +13,27 @@ async function retrieveFromGlancesAPI(privateWidgetOptions, endpoint) {
     throw new Error(errorMessage);
   }
 
-  const apiUrl = `${url}/api/3/${endpoint}`;
+  const apiUrl = `${url}/api/${privateWidgetOptions.version}/${endpoint}`;
   const headers = {
-    "Accept-Encoding": "application/json"
+    "Accept-Encoding": "application/json",
   };
   if (privateWidgetOptions.username && privateWidgetOptions.password) {
-    headers.Authorization = `Basic ${Buffer.from(`${privateWidgetOptions.username}:${privateWidgetOptions.password}`).toString("base64")}`
+    headers.Authorization = `Basic ${Buffer.from(
+      `${privateWidgetOptions.username}:${privateWidgetOptions.password}`,
+    ).toString("base64")}`;
   }
   const params = { method: "GET", headers };
 
   const [status, , data] = await httpProxy(apiUrl, params);
 
   if (status === 401) {
-    errorMessage = `Authorization failure getting data from glances API. Data: ${data.toString()}`
+    errorMessage = `Authorization failure getting data from glances API. Data: ${data.toString()}`;
     logger.error(errorMessage);
     throw new Error(errorMessage);
   }
-  
+
   if (status !== 200) {
-    errorMessage = `HTTP ${status} getting data from glances API. Data: ${data.toString()}`
+    errorMessage = `HTTP ${status} getting data from glances API. Data: ${data.toString()}`;
     logger.error(errorMessage);
     throw new Error(errorMessage);
   }
@@ -40,9 +42,10 @@ async function retrieveFromGlancesAPI(privateWidgetOptions, endpoint) {
 }
 
 export default async function handler(req, res) {
-  const { index, cputemp: includeCpuTemp, uptime: includeUptime, disk: includeDisks } = req.query;
+  const { index, cputemp: includeCpuTemp, uptime: includeUptime, disk: includeDisks, version } = req.query;
 
   const privateWidgetOptions = await getPrivateWidgetOptions("glances", index);
+  privateWidgetOptions.version = version ?? 3;
 
   try {
     const cpuData = await retrieveFromGlancesAPI(privateWidgetOptions, "cpu");
@@ -52,7 +55,7 @@ export default async function handler(req, res) {
       cpu: cpuData,
       load: loadData,
       mem: memoryData,
-    }
+    };
 
     // Disabled by default, dont call unless needed
     if (includeUptime) {

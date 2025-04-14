@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useTranslation } from "next-i18next";
 import classNames from "classnames";
-
-import Container from "components/services/widget/container";
-import Block from "components/services/widget/block";
 import Dropdown from "components/services/dropdown";
+import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+import { useTranslation } from "next-i18next";
+import { useState } from "react";
+
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -27,7 +27,7 @@ export default function Component({ service }) {
 
   const params = {
     convert: `${currencyCode}`,
-  }
+  };
 
   // slugs >> symbols, not both
   if (slugs?.length) {
@@ -59,11 +59,13 @@ export default function Component({ service }) {
   }
 
   const { data } = statsData;
-  const validCryptos = Object.values(data).filter(crypto => crypto.quote[currencyCode][`percent_change_${dateRange}`] !== null)
+  const validCryptos = Object.values(data).filter(
+    (crypto) => crypto.quote[currencyCode][`percent_change_${dateRange}`] !== null,
+  );
 
   return (
     <Container service={service}>
-      <div className={classNames(service.description ? "-top-10" : "-top-8", "absolute right-1")}>
+      <div className={classNames(service.description ? "-top-10" : "-top-8", "absolute right-1 z-20")}>
         <Dropdown options={dateRangeOptions} value={dateRange} setValue={setDateRange} />
       </div>
 
@@ -71,7 +73,7 @@ export default function Component({ service }) {
         {validCryptos.map((crypto) => (
           <div
             key={crypto.id}
-            className="bg-theme-200/50 dark:bg-theme-900/20 rounded m-1 flex-1 flex flex-row items-center justify-between p-1 text-xs"
+            className="bg-theme-200/50 dark:bg-theme-900/20 rounded-sm m-1 flex-1 flex flex-row items-center justify-between p-1 text-xs"
           >
             <div className="font-thin pl-2">{crypto.name}</div>
             <div className="flex flex-row text-right">
@@ -84,9 +86,7 @@ export default function Component({ service }) {
               </div>
               <div
                 className={`font-bold w-10 mr-2 ${
-                  crypto.quote[currencyCode][`percent_change_${dateRange}`] > 0
-                    ? "text-emerald-300"
-                    : "text-rose-300"
+                  crypto.quote[currencyCode][`percent_change_${dateRange}`] > 0 ? "text-emerald-300" : "text-rose-300"
                 }`}
               >
                 {crypto.quote[currencyCode][`percent_change_${dateRange}`].toFixed(2)}%

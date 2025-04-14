@@ -1,7 +1,7 @@
+import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
 import { useTranslation } from "next-i18next";
 
-import Container from "components/services/widget/container";
-import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 function fromUnits(value) {
@@ -37,7 +37,7 @@ export default function Component({ service }) {
 
   return (
     <Container service={service}>
-      <Block label="sabnzbd.rate" value={t("common.bitrate", { value: fromUnits(queueData.queue.speed) * 8 })} />
+      <Block label="sabnzbd.rate" value={t("common.byterate", { value: fromUnits(queueData.queue.speed) })} />
       <Block label="sabnzbd.queue" value={t("common.number", { value: queueData.queue.noofslots })} />
       <Block label="sabnzbd.timeleft" value={queueData.queue.timeleft} />
     </Container>

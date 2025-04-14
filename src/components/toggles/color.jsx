@@ -1,8 +1,7 @@
-import { useContext, Fragment } from "react";
-import { IoColorPalette } from "react-icons/io5";
 import { Popover, Transition } from "@headlessui/react";
 import classNames from "classnames";
-
+import { Fragment, useContext } from "react";
+import { IoColorPalette } from "react-icons/io5";
 import { ColorContext } from "utils/contexts/color";
 
 const colors = [
@@ -38,9 +37,9 @@ export default function ColorToggle() {
   }
 
   return (
-    <div className="w-full self-center">
+    <div id="color" className="w-full self-center">
       <Popover className="relative flex items-center">
-        <Popover.Button className="outline-none">
+        <Popover.Button className="outline-hidden">
           <IoColorPalette
             className="h-5 w-5 text-theme-800 dark:text-theme-200 transition duration-150 ease-in-out"
             aria-hidden="true"
@@ -65,7 +64,7 @@ export default function ColorToggle() {
                       title={color}
                       className={classNames(
                         active === color ? "border-2" : "border-0",
-                        `rounded-md w-5 h-5 border-black/50 dark:border-white/50 theme-${color} bg-theme-400`
+                        `rounded-md w-5 h-5 border-black/50 dark:border-white/50 theme-${color} bg-theme-400`,
                       )}
                     />
                     <span className="sr-only">{color}</span>

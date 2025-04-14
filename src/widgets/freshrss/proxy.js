@@ -1,9 +1,9 @@
 import cache from "memory-cache";
 
-import { httpProxy } from "utils/proxy/http";
-import { formatApiCall } from "utils/proxy/api-helpers";
 import getServiceWidget from "utils/config/service-helpers";
 import createLogger from "utils/logger";
+import { formatApiCall } from "utils/proxy/api-helpers";
+import { httpProxy } from "utils/proxy/http";
 import widgets from "widgets/widgets";
 
 const proxyName = "freshrssProxyHandler";
@@ -12,21 +12,25 @@ const logger = createLogger(proxyName);
 
 async function login(widget, service) {
   const endpoint = "accounts/ClientLogin";
-  const api = widgets?.[widget.type]?.api
+  const api = widgets?.[widget.type]?.api;
   const loginUrl = new URL(formatApiCall(api, { endpoint, ...widget }));
   const headers = { "Content-Type": "application/x-www-form-urlencoded" };
 
-  const [, , data,] = await httpProxy(loginUrl, {
+  const [, , data] = await httpProxy(loginUrl, {
     method: "POST",
     body: new URLSearchParams({
       Email: widget.username,
-      Passwd: widget.password
+      Passwd: widget.password,
     }).toString(),
     headers,
   });
 
   try {
-    const [, token] = data.toString().split("\n").find(line => line.startsWith("Auth=")).split("=")
+    const [, token] = data
+      .toString()
+      .split("\n")
+      .find((line) => line.startsWith("Auth="))
+      .split("=");
     cache.put(`${sessionTokenCacheKey}.${service}`, token);
     return { token };
   } catch (e) {
@@ -39,8 +43,8 @@ async function login(widget, service) {
 async function apiCall(widget, endpoint, service) {
   const key = `${sessionTokenCacheKey}.${service}`;
   const headers = {
-    "Authorization": `GoogleLogin auth=${cache.get(key)}`,
-  }
+    Authorization: `GoogleLogin auth=${cache.get(key)}`,
+  };
   const url = new URL(formatApiCall(widgets[widget.type].api, { endpoint, ...widget }));
   const method = "GET";
 
@@ -70,14 +74,14 @@ async function apiCall(widget, endpoint, service) {
 }
 
 export default async function freshrssProxyHandler(req, res) {
-  const { group, service } = req.query;
+  const { group, service, index } = req.query;
 
   if (!group || !service) {
     logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
     return res.status(400).json({ error: "Invalid proxy service type" });
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
   if (!widget) {
     logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);
     return res.status(400).json({ error: "Invalid proxy service type" });
@@ -92,6 +96,6 @@ export default async function freshrssProxyHandler(req, res) {
 
   return res.status(200).send({
     subscriptions: subscriptionData?.subscriptions.length,
-    unread: unreadCountData?.max
+    unread: unreadCountData?.max,
   });
 }

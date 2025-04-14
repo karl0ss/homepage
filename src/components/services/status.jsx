@@ -1,65 +1,64 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import useSWR from "swr";
 
-export default function Status({ service }) {
+export default function Status({ service, style }) {
   const { t } = useTranslation();
 
   const { data, error } = useSWR(`/api/docker/status/${service.container}/${service.server || ""}`);
 
+  let statusLabel = t("docker.unknown");
+  let backgroundClass = "px-1.5 py-0.5 bg-theme-500/10 dark:bg-theme-900/50";
+  let colorClass = "text-black/20 dark:text-white/40 ";
+
   if (error) {
-    <div className="w-auto px-1.5 py-0.5 text-center bg-theme-500/10 dark:bg-theme-900/50 rounded-b-[3px] overflow-hidden" title={t("docker.error")}>
-      <div className="text-[8px] font-bold text-rose-500/80 uppercase">{t("docker.error")}</div>
-    </div>
-  }
-
-  if (data) {
-    let statusLabel = "";
-
+    statusLabel = t("docker.error");
+    colorClass = "text-rose-500/80";
+  } else if (data) {
     if (data.status?.includes("running")) {
-      if (data.health === "starting") {
-        return (
-          <div className="w-auto px-1.5 py-0.5 text-center bg-theme-500/10 dark:bg-theme-900/50 rounded-b-[3px] overflow-hidden" title={t("docker.starting")}>
-            <div className="text-[8px] font-bold text-blue-500/80 uppercase">{t("docker.starting")}</div>
-          </div>
-        );
-      }
-
-      if (data.health === "unhealthy") {
-        return (
-          <div className="w-auto px-1.5 py-0.5 text-center bg-theme-500/10 dark:bg-theme-900/50 rounded-b-[3px] overflow-hidden" title={t("docker.unhealthy")}>
-            <div className="text-[8px] font-bold text-orange-400/50 dark:text-orange-400/80 uppercase">{t("docker.unhealthy")}</div>
-          </div>
-        );
-      }
+      colorClass = "text-emerald-500/80";
 
       if (!data.health) {
-        statusLabel = data.status.replace("running", t("docker.running"))
+        statusLabel = data.status.replace("running", t("docker.running"));
       } else {
-        statusLabel = data.health === "healthy" ? t("docker.healthy") : data.health
-      }
+        statusLabel = data.health === "healthy" ? t("docker.healthy") : data.health;
 
-      return (
-        <div className="w-auto px-1.5 py-0.5 text-center bg-theme-500/10 dark:bg-theme-900/50 rounded-b-[3px] overflow-hidden" title={statusLabel}>
-          <div className="text-[8px] font-bold text-emerald-500/80 uppercase">{statusLabel}</div>
-        </div>
-      );
+        if (data.health === "starting") {
+          statusLabel = t("docker.starting");
+          colorClass = "text-blue-500/80";
+        }
+
+        if (data.health === "unhealthy") {
+          statusLabel = t("docker.unhealthy");
+          colorClass = "text-orange-400/50 dark:text-orange-400/80";
+        }
+      }
     }
-    
+
     if (data.status === "not found" || data.status === "exited" || data.status?.startsWith("partial")) {
-      if (data.status === "not found") statusLabel = t("docker.not_found")
-      else if (data.status === "exited") statusLabel = t("docker.exited")
-      else statusLabel = data.status.replace("partial", t("docker.partial"))
-      return (
-        <div className="w-auto px-1.5 py-0.5 text-center bg-theme-500/10 dark:bg-theme-900/50 rounded-b-[3px] overflow-hidden" title={statusLabel}>
-          <div className="text-[8px] font-bold text-orange-400/50 dark:text-orange-400/80 uppercase">{statusLabel}</div>
-        </div>
-      );
+      if (data.status === "not found") statusLabel = t("docker.not_found");
+      else if (data.status === "exited") statusLabel = t("docker.exited");
+      else statusLabel = data.status.replace("partial", t("docker.partial"));
+      colorClass = "text-orange-400/50 dark:text-orange-400/80";
     }
+  }
+
+  if (style === "dot") {
+    colorClass = colorClass.replace(/text-/g, "bg-").replace(/\/\d\d/g, "");
+    backgroundClass = "p-4 hover:bg-theme-500/10 dark:hover:bg-theme-900/20";
   }
 
   return (
-    <div className="w-auto px-1.5 py-0.5 text-center bg-theme-500/10 dark:bg-theme-900/50 rounded-b-[3px] overflow-hidden">
-      <div className="text-[8px] font-bold text-black/20 dark:text-white/40 uppercase">{t("docker.unknown")}</div>
+    <div
+      className={`w-auto text-center overflow-hidden ${backgroundClass} rounded-b-[3px] docker-status docker-status-${statusLabel
+        .toLowerCase()
+        .replace(" ", "-")}`}
+      title={statusLabel}
+    >
+      {style !== "dot" ? (
+        <div className={`text-[8px] font-bold ${colorClass} uppercase`}>{statusLabel}</div>
+      ) : (
+        <div className={`rounded-full h-3 w-3 ${colorClass}`} />
+      )}
     </div>
   );
 }

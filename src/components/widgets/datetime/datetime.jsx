@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
+import { useEffect, useState } from "react";
 
 import Container from "../widget/container";
 import Raw from "../widget/raw";
@@ -23,6 +23,7 @@ export default function DateTime({ options }) {
 
   useEffect(() => {
     const dateFormat = new Intl.DateTimeFormat(dateLocale, { ...format });
+    setDate(dateFormat.format(new Date()));
     const interval = setInterval(() => {
       setDate(dateFormat.format(new Date()));
     }, 1000);
@@ -30,7 +31,7 @@ export default function DateTime({ options }) {
   }, [date, setDate, dateLocale, format]);
 
   return (
-    <Container options={options}>
+    <Container options={options} additionalClassNames="information-widget-datetime">
       <Raw>
         <div className="flex flex-row items-center grow justify-end">
           <span className={`text-theme-800 dark:text-theme-200 tabular-nums ${textSizes[textSize || "lg"]}`}>

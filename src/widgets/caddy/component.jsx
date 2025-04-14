@@ -1,15 +1,14 @@
+import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
 import { useTranslation } from "next-i18next";
 
-import Container from "components/services/widget/container";
-import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
   const { t } = useTranslation();
 
   const { widget } = service;
-  const { data: resultData, error: resultError } = useWidgetAPI(widget, "result");
-
+  const { data: resultData, error: resultError } = useWidgetAPI(widget, "upstreams");
 
   if (resultError) {
     return <Container service={service} error={resultError} />;
@@ -17,7 +16,7 @@ export default function Component({ service }) {
 
   if (!resultData) {
     return (
-      <Container service={service}>,
+      <Container service={service}>
         <Block label="caddy.upstreams" />
         <Block label="caddy.requests" />
         <Block label="caddy.requests_failed" />

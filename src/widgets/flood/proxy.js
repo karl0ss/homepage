@@ -1,7 +1,7 @@
-import { formatApiCall } from "utils/proxy/api-helpers";
-import { httpProxy } from "utils/proxy/http";
 import getServiceWidget from "utils/config/service-helpers";
 import createLogger from "utils/logger";
+import { formatApiCall } from "utils/proxy/api-helpers";
+import { httpProxy } from "utils/proxy/http";
 
 const logger = createLogger("floodProxyHandler");
 
@@ -9,16 +9,16 @@ async function login(widget) {
   logger.debug("flood is rejecting the request, logging in.");
   const loginUrl = new URL(`${widget.url}/api/auth/authenticate`).toString();
 
-  const loginParams = { 
-    method: "POST", 
-    headers: { "Content-Type": "application/json" }, 
-    body: null
+  const loginParams = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: null,
   };
 
   if (widget.username && widget.password) {
     loginParams.body = JSON.stringify({
-      "username": widget.username,
-      "password": widget.password
+      username: widget.username,
+      password: widget.password,
     });
   }
 
@@ -28,14 +28,14 @@ async function login(widget) {
 }
 
 export default async function floodProxyHandler(req, res) {
-  const { group, service, endpoint } = req.query;
+  const { group, service, endpoint, index } = req.query;
 
   if (!group || !service) {
     logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
     return res.status(400).json({ error: "Invalid proxy service type" });
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
 
   if (!widget) {
     logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);

@@ -1,9 +1,9 @@
 import cache from "memory-cache";
 
-import { httpProxy } from "utils/proxy/http";
-import { formatApiCall } from "utils/proxy/api-helpers";
 import getServiceWidget from "utils/config/service-helpers";
 import createLogger from "utils/logger";
+import { formatApiCall } from "utils/proxy/api-helpers";
+import { httpProxy } from "utils/proxy/http";
 import widgets from "widgets/widgets";
 
 const proxyName = "homebridgeProxyHandler";
@@ -12,9 +12,9 @@ const logger = createLogger(proxyName);
 
 async function login(widget, service) {
   const endpoint = "auth/login";
-  const api = widgets?.[widget.type]?.api
+  const api = widgets?.[widget.type]?.api;
   const loginUrl = new URL(formatApiCall(api, { endpoint, ...widget }));
-  const loginBody = { username: widget.username, password: widget.password };
+  const loginBody = { username: widget.username.toString(), password: widget.password.toString() };
   const headers = { "Content-Type": "application/json" };
   // eslint-disable-next-line no-unused-vars
   const [status, contentType, data, responseHeaders] = await httpProxy(loginUrl, {
@@ -25,8 +25,8 @@ async function login(widget, service) {
 
   try {
     const { access_token: accessToken, expires_in: expiresIn } = JSON.parse(data.toString());
-  
-    cache.put(`${sessionTokenCacheKey}.${service}`, accessToken, (expiresIn * 1000) - 5 * 60 * 1000); // expiresIn (s) - 5m
+
+    cache.put(`${sessionTokenCacheKey}.${service}`, accessToken, expiresIn * 1000 - 5 * 60 * 1000); // expiresIn (s) - 5m
     return { accessToken };
   } catch (e) {
     logger.error("Unable to login to Homebridge API: %s", e);
@@ -39,8 +39,8 @@ async function apiCall(widget, endpoint, service) {
   const key = `${sessionTokenCacheKey}.${service}`;
   const headers = {
     "content-type": "application/json",
-    "Authorization": `Bearer ${cache.get(key)}`,
-  }
+    Authorization: `Bearer ${cache.get(key)}`,
+  };
 
   const url = new URL(formatApiCall(widgets[widget.type].api, { endpoint, ...widget }));
   const method = "GET";
@@ -71,14 +71,14 @@ async function apiCall(widget, endpoint, service) {
 }
 
 export default async function homebridgeProxyHandler(req, res) {
-  const { group, service } = req.query;
+  const { group, service, index } = req.query;
 
   if (!group || !service) {
     logger.debug("Invalid or missing service '%s' or group '%s'", service, group);
     return res.status(400).json({ error: "Invalid proxy service type" });
   }
 
-  const widget = await getServiceWidget(group, service);
+  const widget = await getServiceWidget(group, service, index);
 
   if (!widget) {
     logger.debug("Invalid or missing widget for service '%s' in group '%s'", service, group);
@@ -95,14 +95,14 @@ export default async function homebridgeProxyHandler(req, res) {
   const { data: pluginsData } = await apiCall(widget, "plugins", service);
 
   return res.status(200).send({
-      status: statusData?.status,
-      updateAvailable: versionData?.updateAvailable,
-      plugins: {
-        updatesAvailable: pluginsData?.filter(p => p.updateAvailable).length,
-      },
-      childBridges: {
-        running: childBridgeData?.filter(cb => cb.status === "ok").length,
-        total: childBridgeData?.length
-      }
+    status: statusData?.status,
+    updateAvailable: versionData?.updateAvailable,
+    plugins: {
+      updatesAvailable: pluginsData?.filter((p) => p.updateAvailable).length,
+    },
+    childBridges: {
+      running: childBridgeData?.filter((cb) => cb.status === "ok").length,
+      total: childBridgeData?.length,
+    },
   });
 }

@@ -1,13 +1,12 @@
+import { useTranslation } from "next-i18next";
 import { FaMemory } from "react-icons/fa";
 import { FiAlertTriangle, FiCpu, FiServer } from "react-icons/fi";
 import { SiKubernetes } from "react-icons/si";
-import { useTranslation } from "next-i18next";
 
 import UsageBar from "../resources/usage-bar";
 
 export default function Node({ type, options, data }) {
   const { t } = useTranslation();
-
 
   function icon() {
     if (type === "cluster") {
@@ -31,7 +30,7 @@ export default function Node({ type, options, data }) {
                   value: data?.cpu?.percent ?? 0,
                   style: "unit",
                   unit: "percent",
-                  maximumFractionDigits: 0
+                  maximumFractionDigits: 0,
                 })}
               </div>
               <FiCpu className="text-theme-800 dark:text-theme-200 w-3 h-3" />
@@ -42,14 +41,16 @@ export default function Node({ type, options, data }) {
                 {t("common.bytes", {
                   value: data?.memory?.free ?? 0,
                   maximumFractionDigits: 0,
-                  binary: true
+                  binary: true,
                 })}
               </div>
               <FaMemory className="text-theme-800 dark:text-theme-200 w-3 h-3" />
             </div>
             <UsageBar percent={data?.memory?.percent} />
             {options.showLabel && (
-              <div className="pt-1 text-center text-theme-800 dark:text-theme-200 text-xs">{type === "cluster" ? options.label : data.name}</div>
+              <div className="pt-1 text-center text-theme-800 dark:text-theme-200 text-xs">
+                {type === "cluster" ? options.label : data.name}
+              </div>
             )}
           </div>
         </div>

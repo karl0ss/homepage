@@ -1,7 +1,7 @@
+import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
 import { useTranslation } from "next-i18next";
 
-import Container from "components/services/widget/container";
-import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
 export default function Component({ service }) {
@@ -31,11 +31,11 @@ export default function Component({ service }) {
   const yesterday = new Date(Date.now()).setHours(-24);
   const loginsLast24H = loginsData.reduce(
     (total, current) => (current.x_cord >= yesterday ? total + current.y_cord : total),
-    0
+    0,
   );
   const failedLoginsLast24H = failedLoginsData.reduce(
     (total, current) => (current.x_cord >= yesterday ? total + current.y_cord : total),
-    0
+    0,
   );
 
   return (

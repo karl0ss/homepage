@@ -1,29 +1,24 @@
 import classNames from "classnames";
-
 import Item from "components/services/item";
 
-const columnMap = [
-  "grid-cols-1 md:grid-cols-1 lg:grid-cols-1",
-  "grid-cols-1 md:grid-cols-1 lg:grid-cols-1",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-2",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-5",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-6",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-7",
-  "grid-cols-1 md:grid-cols-2 lg:grid-cols-8",
-];
+import { columnMap } from "../../utils/layout/columns";
 
-export default function List({ group, services, layout }) {
+export default function List({ groupName, services, layout, useEqualHeights, header }) {
   return (
     <ul
       className={classNames(
         layout?.style === "row" ? `grid ${columnMap[layout?.columns]} gap-x-2` : "flex flex-col",
-        "mt-3"
+        header ? "mt-3" : "",
+        "services-list",
       )}
     >
       {services.map((service) => (
-        <Item key={service.container ?? service.app ?? service.name} service={service} group={group} />
+        <Item
+          key={[service.container, service.app, service.name].filter((s) => s).join("-")}
+          service={service}
+          groupName={groupName}
+          useEqualHeights={layout?.useEqualHeights ?? useEqualHeights}
+        />
       ))}
     </ul>
   );
