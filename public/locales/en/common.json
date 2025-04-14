@@ -908,9 +908,10 @@
         "species": "Species"
     },
     "gitea": {
-        "notifications": "Notifications",
-        "issues": "Issues",
-        "pulls": "Pull Requests"
+      "notifications": "Notifications",
+      "issues": "Issues",
+      "pulls": "Pull Requests",
+      "repositories": "Repositories"
     },
     "blueiris": {
         "serverName": "Server Name",
@@ -1053,5 +1054,24 @@
         "load": "Load",
         "bcharge":"Battery Charge",
         "timeleft":"Time Left"
+    },
+    "karakeep": {
+        "bookmarks": "Bookmarks",
+        "favorites": "Favorites",
+        "archived": "Archived",
+        "highlights": "Highlights",
+        "lists": "Lists",
+        "tags": "Tags"
+    },
+    "slskd": {
+        "slskStatus": "Network",
+        "connected": "Connected",
+        "disconnected": "Disconnected",
+        "updateStatus": "Update",
+        "update_yes": "Available",
+        "update_no": "Up to Date",
+        "downloads": "Downloads",
+        "uploads": "Uploads",
+        "sharedFiles": "Files"
     }
 }
