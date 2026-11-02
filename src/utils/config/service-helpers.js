@@ -1,15 +1,15 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-import yaml from "js-yaml";
 import Docker from "dockerode";
+import yaml from "js-yaml";
 
-import createLogger from "utils/logger";
 import checkAndCopyConfig, { CONF_DIR, getSettings, substituteEnvironmentVars } from "utils/config/config";
 import getDockerArguments from "utils/config/docker";
-import kubernetes from "utils/kubernetes/export";
 import { getKubeConfig } from "utils/config/kubernetes";
 import * as shvl from "utils/config/shvl";
+import kubernetes from "utils/kubernetes/export";
+import createLogger from "utils/logger";
 
 const logger = createLogger("service-helpers");
 
@@ -254,6 +254,7 @@ export function cleanServiceGroups(groups) {
           // all widgets
           fields,
           hideErrors,
+          highlight,
           type,
 
           // azuredevops
@@ -284,6 +285,7 @@ export function cleanServiceGroups(groups) {
 
           // deluge, qbittorrent
           enableLeechProgress,
+          enableLeechSize,
 
           // diskstation
           volume,
@@ -295,6 +297,7 @@ export function cleanServiceGroups(groups) {
           // emby, jellyfin
           enableBlocks,
           enableNowPlaying,
+          enableMediaControl,
 
           // emby, jellyfin, tautulli
           enableUser,
@@ -304,7 +307,10 @@ export function cleanServiceGroups(groups) {
           // frigate
           enableRecentEvents,
 
-          // beszel, glances, immich, komga, mealie, pihole, pfsense, speedtest
+          // gamedig
+          gameToken,
+
+          // authentik, beszel, glances, immich, komga, mealie, pihole, pfsense, speedtest
           version,
 
           // glances
@@ -331,6 +337,13 @@ export function cleanServiceGroups(groups) {
           referrerPolicy,
           src,
 
+          // jellystat
+          days,
+
+          // komodo
+          showSummary,
+          showStacks,
+
           // kopia
           snapshotHost,
           snapshotPath,
@@ -356,11 +369,17 @@ export function cleanServiceGroups(groups) {
           // opnsense, pfsense
           wan,
 
+          // portainer
+          kubernetes,
+
           // prometheusmetric
           metrics,
 
           // proxmox
           node,
+
+          // proxmoxbackupserver
+          datastore,
 
           // speedtest
           bitratePrecision,
@@ -379,17 +398,29 @@ export function cleanServiceGroups(groups) {
           // unifi
           site,
 
+          // unraid
+          pool1,
+          pool2,
+          pool3,
+          pool4,
+
           // vikunja
           enableTaskList,
 
           // wgeasy
           threshold,
 
+          // yourspotify
+          interval,
+
           // technitium
           range,
 
           // spoolman
           spoolIds,
+
+          // grafana
+          alerts,
         } = widgetData;
 
         let fieldsList = fields;
@@ -410,6 +441,21 @@ export function cleanServiceGroups(groups) {
           service_group: serviceGroup.name,
           index,
         };
+
+        if (highlight) {
+          let parsedHighlight = highlight;
+          if (typeof highlight === "string") {
+            try {
+              parsedHighlight = JSON.parse(highlight);
+            } catch (e) {
+              logger.error("Invalid highlight configuration detected in config for service '%s'", service.name);
+              parsedHighlight = null;
+            }
+          }
+          if (parsedHighlight && typeof parsedHighlight === "object") {
+            widget.highlight = parsedHighlight;
+          }
+        }
 
         if (type === "azuredevops") {
           if (userEmail) widget.userEmail = userEmail;
@@ -434,8 +480,18 @@ export function cleanServiceGroups(groups) {
         if (type === "unifi") {
           if (site) widget.site = site;
         }
+        if (type === "portainer") {
+          if (kubernetes) widget.kubernetes = !!JSON.parse(kubernetes);
+        }
         if (type === "proxmox") {
           if (node) widget.node = node;
+        }
+        if (type === "proxmoxbackupserver") {
+          if (datastore) widget.datastore = datastore;
+        }
+        if (type === "komodo") {
+          if (showSummary !== undefined) widget.showSummary = !!JSON.parse(showSummary);
+          if (showStacks !== undefined) widget.showStacks = !!JSON.parse(showStacks);
         }
         if (type === "kubernetes") {
           if (namespace) widget.namespace = namespace;
@@ -454,11 +510,13 @@ export function cleanServiceGroups(groups) {
         }
         if (["deluge", "qbittorrent"].includes(type)) {
           if (enableLeechProgress !== undefined) widget.enableLeechProgress = JSON.parse(enableLeechProgress);
+          if (enableLeechSize !== undefined) widget.enableLeechSize = JSON.parse(enableLeechSize);
         }
         if (["opnsense", "pfsense"].includes(type)) {
           if (wan) widget.wan = wan;
         }
         if (["emby", "jellyfin"].includes(type)) {
+          if (enableMediaControl !== undefined) widget.enableMediaControl = !!JSON.parse(enableMediaControl);
           if (enableBlocks !== undefined) widget.enableBlocks = JSON.parse(enableBlocks);
           if (enableNowPlaying !== undefined) widget.enableNowPlaying = JSON.parse(enableNowPlaying);
         }
@@ -478,11 +536,28 @@ export function cleanServiceGroups(groups) {
         if (["diskstation", "qnap"].includes(type)) {
           if (volume) widget.volume = volume;
         }
+        if (type === "gamedig") {
+          if (gameToken) widget.gameToken = gameToken;
+        }
         if (type === "kopia") {
           if (snapshotHost) widget.snapshotHost = snapshotHost;
           if (snapshotPath) widget.snapshotPath = snapshotPath;
         }
-        if (["beszel", "glances", "immich", "komga", "mealie", "pfsense", "pihole", "speedtest"].includes(type)) {
+        if (
+          [
+            "authentik",
+            "beszel",
+            "glances",
+            "immich",
+            "komga",
+            "mealie",
+            "pfsense",
+            "pihole",
+            "speedtest",
+            "wgeasy",
+            "grafana",
+          ].includes(type)
+        ) {
           if (version) widget.version = parseInt(version, 10);
         }
         if (type === "glances") {
@@ -556,6 +631,23 @@ export function cleanServiceGroups(groups) {
         }
         if (type === "spoolman") {
           if (spoolIds !== undefined) widget.spoolIds = spoolIds;
+        }
+        if (type === "jellystat") {
+          if (days !== undefined) widget.days = parseInt(days, 10);
+        }
+        if (type === "grafana") {
+          if (alerts) widget.alerts = alerts;
+        }
+        if (type === "unraid") {
+          if (pool1) widget.pool1 = pool1;
+          if (pool2) widget.pool2 = pool2;
+          if (pool3) widget.pool3 = pool3;
+          if (pool4) widget.pool4 = pool4;
+        }
+        if (type === "yourspotify") {
+          if (interval !== undefined) {
+            widget.interval = interval;
+          }
         }
         return widget;
       });

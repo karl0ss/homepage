@@ -1,6 +1,6 @@
-import { useTranslation } from "next-i18next";
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+import { useTranslation } from "next-i18next";
 
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
@@ -34,14 +34,6 @@ export default function Component({ service }) {
   return (
     <Container service={service}>
       <Block
-        label="myspeed.ping"
-        value={t("common.ms", {
-          value: data[0].ping,
-          style: "unit",
-          unit: "millisecond",
-        })}
-      />
-      <Block
         label="myspeed.download"
         value={t("common.bitrate", {
           value: data[0].download * 1000 * 1000,
@@ -53,6 +45,14 @@ export default function Component({ service }) {
         value={t("common.bitrate", {
           value: data[0].upload * 1000 * 1000,
           decimals: 2,
+        })}
+      />
+      <Block
+        label="myspeed.ping"
+        value={t("common.ms", {
+          value: data[0].ping,
+          style: "unit",
+          unit: "millisecond",
         })}
       />
     </Container>

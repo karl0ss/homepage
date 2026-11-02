@@ -1,6 +1,6 @@
-import { useTranslation } from "next-i18next";
-import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
+import { useTranslation } from "next-i18next";
 
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
@@ -14,8 +14,8 @@ export default function Component({ service }) {
   const { data: channelsData, error: channelsError } = useWidgetAPI(widget, "channels");
   const { data: playlistsData, error: playlistsError } = useWidgetAPI(widget, "playlists");
 
-  if (downloadsError || videosError || channelsError || playlistsError) {
-    const finalError = downloadsError ?? videosError ?? channelsError ?? playlistsError;
+  if (downloadsError || videosError || channelsError || playlistsError || (downloadsData && downloadsData.detail)) {
+    const finalError = downloadsError ?? videosError ?? channelsError ?? playlistsError ?? downloadsData.detail;
     return <Container service={service} error={finalError} />;
   }
 

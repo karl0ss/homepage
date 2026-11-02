@@ -1,7 +1,7 @@
+import Block from "components/services/widget/block";
+import Container from "components/services/widget/container";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import Container from "components/services/widget/container";
-import Block from "components/services/widget/block";
 
 import { formatProxyUrl } from "utils/proxy/api-helpers";
 
@@ -31,6 +31,10 @@ export default function Component({ service }) {
     );
   }
 
+  if (uptimerobotData.error) {
+    return <Container service={service} error={uptimerobotData.error} />;
+  }
+
   // multiple monitors
   if (uptimerobotData.pagination?.total > 1) {
     const sitesUp = uptimerobotData.monitors.filter((m) => m.status === 2).length;
@@ -48,6 +52,7 @@ export default function Component({ service }) {
   let status;
   let uptime = 0;
   let logIndex = 0;
+  const hasLogs = Array.isArray(monitor.logs) && monitor.logs.length > 0;
 
   switch (monitor.status) {
     case 0:
@@ -58,7 +63,7 @@ export default function Component({ service }) {
       break;
     case 2:
       status = t("uptimerobot.up");
-      uptime = t("common.duration", { value: monitor.logs[0].duration });
+      uptime = t("common.duration", { value: hasLogs ? monitor.logs[0].duration : 0 });
       logIndex = 1;
       break;
     case 8:
@@ -72,14 +77,14 @@ export default function Component({ service }) {
       break;
   }
 
-  const lastDown = new Date(monitor.logs[logIndex].datetime * 1000).toLocaleString();
-  const downDuration = t("common.duration", { value: monitor.logs[logIndex].duration });
-  const hideDown = logIndex === 1 && monitor.logs[logIndex].type !== 1;
+  const lastDown = hasLogs ? new Date(monitor.logs[logIndex].datetime * 1000).toLocaleString() : "";
+  const downDuration = t("common.duration", { value: hasLogs ? monitor.logs[logIndex].duration : 0 });
+  const hideDown = !hasLogs || (logIndex === 1 && monitor.logs[logIndex].type !== 1);
 
   return (
     <Container service={service}>
       <Block label="uptimerobot.status" value={status} />
-      <Block label="uptimerobot.uptime" value={uptime} />
+      {hasLogs && <Block label="uptimerobot.uptime" value={uptime} />}
       {!hideDown && <Block label="uptimerobot.lastDown" value={lastDown} />}
       {!hideDown && <Block label="uptimerobot.downDuration" value={downDuration} />}
     </Container>
