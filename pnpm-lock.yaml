@@ -80,6 +80,9 @@ importers:
       recharts:
         specifier: ^3.1.2
         version: 3.1.2(@types/react@19.0.10)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(redux@5.0.1)
+      salted-md5:
+        specifier: ^4.0.5
+        version: 4.0.10
       swr:
         specifier: ^2.3.3
         version: 2.3.3(react@18.3.1)
@@ -2579,6 +2582,9 @@ packages:
 
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
+
+  salted-md5@4.0.10:
+    resolution: {integrity: sha512-S6KEzIfGP/7T/aqMrUP+9Ga9ysO8igkWti4TEFhz5MjZ+g9FxpGAwVReDNKKTPUXF22ZCpCVvTRV7FmmXij1sg==}
 
   sax@1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
@@ -5648,6 +5654,8 @@ snapshots:
   safe-stable-stringify@2.5.0: {}
 
   safer-buffer@2.1.2: {}
+
+  salted-md5@4.0.10: {}
 
   sax@1.2.4: {}
 
